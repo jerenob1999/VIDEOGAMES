@@ -1,7 +1,9 @@
-const { createNewVideogame } = require("../controllers/videogamesController");
+const { createNewVideogame, getVideogameById } = require("../controllers/videogamesController");
 
-const getVideogameHandler = (req, res) => {
-  res.status(200).json("estoy en la ruta ID VIDEOGAMES");
+const getVideogameHandler = async (req, res) => {
+  const {idVideogame} = req.params;
+  const videogame = await getVideogameById(idVideogame)
+  res.status(200).json(videogame);
 };
 
 const getVideogamesHandler = (req, res) => {
