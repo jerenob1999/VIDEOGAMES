@@ -2,7 +2,8 @@ const { createNewVideogame, getVideogameById } = require("../controllers/videoga
 
 const getVideogameHandler = async (req, res) => {
   const {idVideogame} = req.params;
-  const videogame = await getVideogameById(idVideogame)
+  const source = isNaN(idVideogame) ? "BDD" : "API"
+  const videogame = await getVideogameById(idVideogame,source)
   res.status(200).json(videogame);
 };
 
