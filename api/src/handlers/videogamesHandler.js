@@ -1,15 +1,31 @@
-const { createNewVideogame, getVideogameById } = require("../controllers/videogamesController");
+const {
+  createNewVideogame,
+  getVideogameById,
+  getAllVideogames,
+} = require("../controllers/videogamesController");
 const { SOURCE } = require("../utils/variables");
 
+
 const getVideogameHandler = async (req, res) => {
-  const {idVideogame} = req.params;
-  const source = isNaN(idVideogame) ? SOURCE.BDD : SOURCE.API
-  const videogame = await getVideogameById(idVideogame,source)
-  res.status(200).json(videogame);
+  try {
+    const { idVideogame } = req.params;
+    const source = isNaN(idVideogame) ? SOURCE.BDD : SOURCE.API;
+    const videogame = await getVideogameById(idVideogame, source);
+    res.status(200).json(videogame);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
 
-const getVideogamesHandler = (req, res) => {
-  res.status(200).json("estoy en la ruta videogames");
+const getVideogamesHandler = async (req, res) => {
+  const { name } = req.query;
+  console.log(name);
+  try {
+    const videogames = await getAllVideogames(name);
+    res.status(200).json(videogames);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
 
 const postVideogameHandler = async (req, res) => {
