@@ -3,4 +3,9 @@ const apiUrl = Object.freeze({
   apiGenre: "https://api.rawg.io/api/genres/",
 });
 
-module.exports = apiUrl;
+const SOURCE = Object.freeze({
+  API: "API_SOURCE",
+  BDD: "BDD_SOURCE"
+})
+
+module.exports = {apiUrl, SOURCE}
