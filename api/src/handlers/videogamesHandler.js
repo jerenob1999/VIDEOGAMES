@@ -19,7 +19,6 @@ const getVideogameHandler = async (req, res) => {
 
 const getVideogamesHandler = async (req, res) => {
   const { name } = req.query;
-  console.log(name);
   try {
     const videogames = await getAllVideogames(name);
     res.status(200).json(videogames);
