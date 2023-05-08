@@ -4,7 +4,7 @@ const {
   getAllVideogames,
 } = require("../controllers/videogamesController");
 const { SOURCE } = require("../utils/variables");
-const {Genre} = require("../db")
+
 
 const getVideogameHandler = async (req, res) => {
   try {
@@ -19,8 +19,10 @@ const getVideogameHandler = async (req, res) => {
 
 const getVideogamesHandler = async (req, res) => {
   const { name } = req.query;
+
   try {
     const videogames = await getAllVideogames(name);
+    if (!videogames.length) return {}
     res.status(200).json(videogames);
   } catch (error) {
     res.status(400).json({ error: error.message });

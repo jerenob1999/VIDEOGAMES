@@ -8,4 +8,10 @@ const SOURCE = Object.freeze({
   BDD: "BDD_SOURCE"
 })
 
-module.exports = {apiUrl, SOURCE}
+const ERROR = Object.freeze({
+  POST:"MISSING DATA",
+  GET_ID:"NOT A VALID ID",
+  QUERY:"GAME NOT FOUND"
+})
+
+module.exports = {apiUrl, SOURCE, ERROR}

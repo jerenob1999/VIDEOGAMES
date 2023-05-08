@@ -3,6 +3,7 @@ const { apiUrl, SOURCE } = require("../utils/variables");
 const axios = require("axios");
 const { API_KEY } = process.env;
 const { videogamesFilter } = require("../utils/filters");
+const { queryValidator } = require("../utils/validators");
 
 const createNewVideogame = async (
   name,
@@ -36,14 +37,17 @@ const getVideogameById = async (id, source) => {
 
 const getAllVideogames = async (query) => {
   const videogamesBDD = !query
-    ? await Videogame.findAll()
-    : await Videogame.findAll({ where: { name: query } });
+    ? await Videogame.findAll({ include: Genre })
+    : await Videogame.findAll({ where: { name: query } }, { include: Genre });
 
   const videogames = !query
     ? (await axios.get(`${apiUrl.apiGames}?key=${API_KEY}`)).data
     : (await axios.get(`${apiUrl.apiGames}?search=${query}&key=${API_KEY}`))
         .data;
-  return videogamesFilter(videogames.results).concat(videogamesBDD);
+  const filteredVideogames = videogamesFilter(videogames.results).concat(
+    videogamesBDD
+  );
+  return queryValidator(filteredVideogames);
 };
 
 module.exports = { createNewVideogame, getVideogameById, getAllVideogames };

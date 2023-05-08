@@ -5,8 +5,9 @@ const {
   getVideogameHandler,
   getVideogamesHandler,
 } = require("../handlers/videogamesHandler");
+const {createVideogameValidator, getIdValidator} = require("../utils/validators")
 
 videogamesRoutes.get("/", getVideogamesHandler);
-videogamesRoutes.get("/:idVideogame", getVideogameHandler);
-videogamesRoutes.post("/", postVideogameHandler);
+videogamesRoutes.get("/:idVideogame", getIdValidator, getVideogameHandler);
+videogamesRoutes.post("/", createVideogameValidator , postVideogameHandler);
 module.exports = videogamesRoutes;
