@@ -9,6 +9,12 @@ const videogamesFilter = (videogames) => {
       image: videogame.background_image,
       rating: videogame.rating,
       releaseDate: videogame.release,
+      genre: videogame.genres.map(genre => {
+        return {
+          id:genre.id,
+          name:genre.name
+        }
+      })
     };
   });
 };

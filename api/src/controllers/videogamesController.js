@@ -1,8 +1,8 @@
-const { Videogame } = require("../db");
+const { Videogame, Genre } = require("../db");
 const { apiUrl, SOURCE } = require("../utils/variables");
 const axios = require("axios");
 const { API_KEY } = process.env;
-const {videogamesFilter} = require("../utils/filters")
+const { videogamesFilter } = require("../utils/filters");
 
 const createNewVideogame = async (
   name,
@@ -27,15 +27,23 @@ const getVideogameById = async (id, source) => {
   const videogame =
     source === SOURCE.API
       ? (await axios.get(`${apiUrl.apiGames}/${id}?key=${API_KEY}`)).data
-      : await Videogame.findByPk(id);
+      : await Videogame.findByPk(id, {
+          include: Genre,
+        });
 
   return videogamesFilter(videogame);
 };
 
 const getAllVideogames = async (query) => {
-    const videogames = !query ? (await axios.get(`${apiUrl.apiGames}?key=${API_KEY}`)).data
-                              : (await axios.get(`${apiUrl.apiGames}?search=${query}&key=${API_KEY}`)).data
-    return videogamesFilter(videogames.results)  
-}
+  const videogamesBDD = !query
+    ? await Videogame.findAll()
+    : await Videogame.findAll({ where: { name: query } });
+
+  const videogames = !query
+    ? (await axios.get(`${apiUrl.apiGames}?key=${API_KEY}`)).data
+    : (await axios.get(`${apiUrl.apiGames}?search=${query}&key=${API_KEY}`))
+        .data;
+  return videogamesFilter(videogames.results).concat(videogamesBDD);
+};
 
 module.exports = { createNewVideogame, getVideogameById, getAllVideogames };
