@@ -13,4 +13,13 @@ const videogamesFilter = (videogames) => {
   });
 };
 
-module.exports = { videogamesFilter };
+
+const genresFilter = (genres) => {
+  return genres.map(genre => {
+    return {
+      id:genre.id,
+      name:genre.name
+    }
+  })
+}
+module.exports = { videogamesFilter, genresFilter };

@@ -1,6 +1,6 @@
 const apiUrl = Object.freeze({
   apiGames: "https://api.rawg.io/api/games",
-  apiGenre: "https://api.rawg.io/api/genres/",
+  apiGenre:"https://api.rawg.io/api/genres",
 });
 
 const SOURCE = Object.freeze({
