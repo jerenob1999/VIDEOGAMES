@@ -5,5 +5,5 @@ export const ACTION_TYPES = Object.freeze({
 
 
 export const ENDPOINTS = Object.freeze({
-    VIDEOGAMES_ID: "http://localhost:3001/videogames/"
+    VIDEOGAMES: "http://localhost:3001/videogames/",
 })

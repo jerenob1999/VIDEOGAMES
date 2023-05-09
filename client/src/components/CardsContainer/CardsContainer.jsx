@@ -1,6 +1,10 @@
 import Card from "../Card/Card"
+import { useSelector } from "react-redux"
 
 const CardContainer = () => {
+
+    const videogames = useSelector(state => state.videogames)
+    console.log(videogames)
     const games = [
         {
             "id": 3498,
@@ -353,14 +357,15 @@ const CardContainer = () => {
         }]
     return (
         <div>
-            {games.map(game => {
+            {videogames.map(game => {
                 return <Card
                 id={game.id}
                 name={game.name}
                 image={game.image}
-                genre={game.genre.map(genre => {
-                    return `${genre.name}`
-                })}
+                //revisar
+                // genre={game.genre.length && game.genre.map(genre => {
+                //     return `${genre.name}`
+                // })} 
                 key={game.id}
                 released={game.released}
                 rating={game.rating}

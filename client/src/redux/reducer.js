@@ -11,6 +11,9 @@ const rootReducer = (state = initialState, action) => {
     case GET_VIDEOGAME_DETAIL:
       return { ...state, videogameDetail: action.payload };
 
+    case GET_VIDEOGAMES:
+      return { ...state, videogames: action.payload };
+
     default:
       return { ...state };
   }
