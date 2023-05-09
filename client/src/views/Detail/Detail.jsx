@@ -1,6 +1,8 @@
+import style from "./Detail.module.css"
+
 const Detail = () => {
     return (
-        <div>
+        <div className={style.container}>
             ESTOY EN DETAIL
         </div>
     )
