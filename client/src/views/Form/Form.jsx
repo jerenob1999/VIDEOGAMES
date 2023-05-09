@@ -1,7 +1,22 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux"
+import { getGenres } from "../../redux/actions";
+
 
 const Form = () => {
+
+    const dispatch = useDispatch();
+    const genres = useSelector(state => state.genres)
+    console.log(genres)
+
+
+    useEffect(() => {
+        if (!genres.length) {
+            dispatch(getGenres())
+        }
+    },[])
+
 
     const [form, setForm] = useState({
         name: "",
@@ -57,11 +72,10 @@ const Form = () => {
             </div>
             <div>
                 <label>GENRES
-                <select multiple={true} value={opcionSeleccionada} onChange={changeHandler}> 
-                <option > AVENTURA</option>
-                <option > PLATAFORMA</option>
-                <option > INDIE</option>
-                
+                <select multiple={true} value={genres.name} onChange={changeHandler}> 
+                {genres.map((genre) => (
+               <option key={genre.id} value={genre.id}>{genre.name}</option>
+          ))}
                 
                 </select>
                     
@@ -72,7 +86,7 @@ const Form = () => {
             </div>
             <div>
                 <label>IMAGE</label>
-                <input type="text" value={form.image} onChange={changeHandler} name="image" />
+                <input type="file" value={form.image} onChange={changeHandler} name="image" />
             </div>
             <div>
                 <label>RELEASEDATE </label>

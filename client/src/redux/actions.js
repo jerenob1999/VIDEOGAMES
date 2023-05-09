@@ -18,3 +18,10 @@ export const getVideogames = () => {
 export const cleanvideogameDetail = () => {
     return {type: ACTION_TYPES.CLEAN_DETAIL, payload:{}}
 }
+
+export const getGenres = () => {
+  return async function (dispatch) {
+    const genres = (await axios.get(`${ENDPOINTS.GENRES}`)).data;
+    dispatch({type: ACTION_TYPES.GET_GENRES, payload: genres})
+  }
+}

@@ -1,9 +1,11 @@
 import { ACTION_TYPES } from "./variables";
-const { GET_VIDEOGAME_DETAIL, GET_VIDEOGAMES, CLEAN_DETAIL } = ACTION_TYPES;
+const { GET_VIDEOGAME_DETAIL, GET_VIDEOGAMES, CLEAN_DETAIL, GET_GENRES } =
+  ACTION_TYPES;
 
 const initialState = {
   videogames: [],
   videogameDetail: {},
+  genres: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -11,11 +13,14 @@ const rootReducer = (state = initialState, action) => {
     case GET_VIDEOGAME_DETAIL:
       return { ...state, videogameDetail: action.payload };
 
+    case GET_GENRES:
+      return { ...state, genres: action.payload };
+
     case GET_VIDEOGAMES:
       return { ...state, videogames: action.payload };
 
     case CLEAN_DETAIL:
-        return {...state, videogameDetail: action.payload}  
+      return { ...state, videogameDetail: action.payload };
 
     default:
       return { ...state };
