@@ -14,3 +14,7 @@ export const getVideogames = () => {
     dispatch({ type: ACTION_TYPES.GET_VIDEOGAMES, payload: videoGames });
   };
 };
+
+export const cleanvideogameDetail = () => {
+    return {type: ACTION_TYPES.CLEAN_DETAIL, payload:{}}
+}

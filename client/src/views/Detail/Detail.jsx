@@ -2,7 +2,7 @@ import style from "./Detail.module.css"
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import { getVideogameDetail } from "../../redux/actions"
+import { getVideogameDetail , cleanvideogameDetail } from "../../redux/actions"
 
 const Detail = () => {
     const dispatch = useDispatch()
@@ -11,6 +11,9 @@ const Detail = () => {
 
     useEffect(() => {
         dispatch(getVideogameDetail(id))
+        return () => {
+        dispatch(cleanvideogameDetail())
+        }
     }, [dispatch, id])
 
     return (
