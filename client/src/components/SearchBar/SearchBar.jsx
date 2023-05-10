@@ -1,12 +1,19 @@
 import { useState } from "react"
+import { getVideogamesByName } from "../../redux/actions"
+import { useDispatch } from "react-redux"
 
 const SearchBar = () => {
-
+    const dispatch = useDispatch()
     const [query,setQuery] = useState("")
+    const submitHandler = (event) => {
+        event.preventDefault();
+        dispatch(getVideogamesByName(query))
+    }
     return (
-        <form id="form">
-            <input type="search" id="query" name="q" placeholder="Search..." />
-            <button>Search</button>
+        <form onSubmit={submitHandler}>
+            <input type="text" id="query" value={query} placeholder="Search videogames" onChange={(e) => setQuery(e.target.value)}
+             />
+            <button type="submit">Search</button>
         </form>
     )
 }

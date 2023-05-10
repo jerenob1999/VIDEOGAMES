@@ -27,5 +27,17 @@ export const getGenres = () => {
 };
 
 export const filterVideogames = (option) => {
-  return { type: ACTION_TYPES.FILTER_VIDEOGAMES, payload:option};
+  return { type: ACTION_TYPES.FILTER_VIDEOGAMES, payload: option };
+};
+
+export const getVideogamesByName = (name) => {
+  return async function (dispatch) {
+    const gamesByName = (
+      await axios.get(`${ENDPOINTS.VIDEOGAMES_BY_NAME}${name}`)
+    ).data;
+    dispatch({
+      type: ACTION_TYPES.GET_VIDEOGAMES_BY_NAME,
+      payload: gamesByName,
+    });
+  };
 };
