@@ -20,4 +20,8 @@ const queryValidator = (videogames) => {
   if (!videogames.length) return ERROR.QUERY;
   return videogames;
 };
+
+
+
+
 module.exports = { createVideogameValidator, getIdValidator, queryValidator };

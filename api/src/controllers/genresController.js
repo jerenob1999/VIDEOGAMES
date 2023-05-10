@@ -6,7 +6,7 @@ const { Genre } = require("../db");
 
 const addGenres = async (filteredGenres) => {
   const genrePromises = filteredGenres.map((genre) => {
-    return Genre.create({ name: genre.name, id: genre.id });
+    return Genre.create({ name: genre.name });
   });
   return Promise.all(genrePromises);
 };

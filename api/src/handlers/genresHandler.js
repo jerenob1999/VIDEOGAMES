@@ -1,4 +1,5 @@
 const { getGenres } = require("../controllers/genresController");
+const { Genre } = require("../db");
 
 const getGenresHandler = async (req, res) => {
   const genres = await getGenres();
