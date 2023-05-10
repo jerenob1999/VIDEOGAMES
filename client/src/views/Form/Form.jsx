@@ -27,8 +27,6 @@ const Form = () => {
         releaseDate: ""
     })
 
-    const [opcionSeleccionada, setOpcionSeleccionada] = useState([]);
-
     const [errors, setErrors] = useState({
         name: "",
         description: "",

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom/cjs/react-router-dom.min"
 import style from "./Navbar.module.css"
+import SearchBar from "../SearchBar/SearchBar"
 
 
 const Navbar = () => {
@@ -7,6 +8,7 @@ const Navbar = () => {
        <div className={style.mainContainer}>
         <Link to="/home">HOME </Link>
         <Link to="/form">CREATE NEW VIDEOGAME </Link>
+        <SearchBar></SearchBar>
        </div>
     )
 }

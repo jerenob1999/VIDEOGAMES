@@ -3,6 +3,7 @@ export const ACTION_TYPES = Object.freeze({
   GET_VIDEOGAMES: "GET_VIDEOGAMES",
   CLEAN_DETAIL: "CLEAN_DETAIL",
   GET_GENRES: "GET_GENRES",
+  ADD_GENRES: "ADD_GENRES"
 });
 
 export const ENDPOINTS = Object.freeze({
