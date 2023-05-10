@@ -16,12 +16,16 @@ export const getVideogames = () => {
 };
 
 export const cleanvideogameDetail = () => {
-    return {type: ACTION_TYPES.CLEAN_DETAIL, payload:{}}
-}
+  return { type: ACTION_TYPES.CLEAN_DETAIL, payload: {} };
+};
 
 export const getGenres = () => {
   return async function (dispatch) {
     const genres = (await axios.get(`${ENDPOINTS.GENRES}`)).data;
-    dispatch({type: ACTION_TYPES.GET_GENRES, payload: genres})
-  }
-}
+    dispatch({ type: ACTION_TYPES.GET_GENRES, payload: genres });
+  };
+};
+
+export const filterVideogames = (option) => {
+  return { type: ACTION_TYPES.FILTER_VIDEOGAMES, payload:option};
+};

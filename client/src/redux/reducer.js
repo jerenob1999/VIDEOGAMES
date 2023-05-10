@@ -1,5 +1,5 @@
 import { ACTION_TYPES } from "./variables";
-const { GET_VIDEOGAME_DETAIL, GET_VIDEOGAMES, CLEAN_DETAIL, GET_GENRES, ADD_GENRES } =
+const { GET_VIDEOGAME_DETAIL, GET_VIDEOGAMES, CLEAN_DETAIL, GET_GENRES, FILTER_VIDEOGAMES } =
   ACTION_TYPES;
 
 const initialState = {
@@ -19,6 +19,10 @@ const rootReducer = (state = initialState, action) => {
 
     case GET_VIDEOGAMES:
       return { ...state, videogames: action.payload };
+
+    case FILTER_VIDEOGAMES:
+      const filteredVideogames = state.videogames.filter(game => game.genres.includes(action.payload))
+      return {...state, videogames: filteredVideogames}
 
     case CLEAN_DETAIL:
       return { ...state, videogameDetail: action.payload };
