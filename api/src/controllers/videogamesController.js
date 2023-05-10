@@ -35,19 +35,32 @@ const getVideogameById = async (id, source) => {
   return videogamesFilter(videogame);
 };
 
+const callApi = async (url) => {
+  let videogames = [];
+  let nextUrl = url;
+  while (videogames.length < 100 && nextUrl) {
+    const response = await axios.get(nextUrl);
+    const data = response.data;
+    videogames = videogames.concat(data.results);
+    nextUrl = data.next;
+  }
+  console.log(videogames.length);
+  return videogames.slice(0, 100);
+};
+
 const getAllVideogames = async (query) => {
   const videogamesBDD = !query
     ? await Videogame.findAll({ include: Genre })
     : await Videogame.findAll({ where: { name: query } }, { include: Genre });
 
   const videogames = !query
-    ? (await axios.get(`${apiUrl.apiGames}?key=${API_KEY}`)).data
+    ? await callApi(`${apiUrl.apiGames}?key=${API_KEY}`)
     : (await axios.get(`${apiUrl.apiGames}?search=${query}&key=${API_KEY}`))
-        .data;
-  const filteredVideogames = videogamesFilter(videogames.results).concat(
-    videogamesBDD
-  );
+        .data.results;
+
+  const filteredVideogames = videogamesFilter(videogames).concat(videogamesBDD);
   return queryValidator(filteredVideogames);
 };
 
 module.exports = { createNewVideogame, getVideogameById, getAllVideogames };
+
