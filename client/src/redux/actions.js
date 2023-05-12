@@ -30,6 +30,10 @@ export const filterVideogames = (option) => {
   return { type: ACTION_TYPES.FILTER_VIDEOGAMES, payload: option };
 };
 
+export const orderVideogames = (order) => {
+  return { type: ACTION_TYPES.ORDER_VIDEOGAMES, payload: order}
+}
+
 export const getVideogamesByName = (name) => {
   return async function (dispatch) {
     const gamesByName = (

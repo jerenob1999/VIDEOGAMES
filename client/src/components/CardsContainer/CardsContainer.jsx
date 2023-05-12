@@ -1,10 +1,13 @@
 import Card from "../Card/Card";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import style from "./CardsContainer.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { orderVideogames } from "../../redux/actions";
 
 const CardContainer = () => {
   const videogames = useSelector((state) => state.videogames);
+  const order = useSelector(state => state.order)
+  const dispatch = useDispatch()
 
   const [page, setPage] = useState(1);
   const gamesToShow = videogames.slice((page - 1) * 15, page * 15);
@@ -16,6 +19,12 @@ const CardContainer = () => {
   const handlePrePage = () => {
     setPage(page - 1);
   };
+
+  useEffect(() => {
+    if (order === "Ascendiente") dispatch(orderVideogames())
+    if (order === "Descendiente") dispatch(orderVideogames())
+  },[dispatch])
+
 
   return (
     <div className={style.cardContainer}>

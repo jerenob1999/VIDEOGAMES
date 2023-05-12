@@ -1,11 +1,12 @@
 import { ACTION_TYPES } from "./variables";
-const { GET_VIDEOGAME_DETAIL, GET_VIDEOGAMES, CLEAN_DETAIL, GET_GENRES, FILTER_VIDEOGAMES, GET_VIDEOGAMES_BY_NAME } =
+const { GET_VIDEOGAME_DETAIL, GET_VIDEOGAMES, CLEAN_DETAIL, GET_GENRES, FILTER_VIDEOGAMES, GET_VIDEOGAMES_BY_NAME, ORDER_VIDEOGAMES } =
   ACTION_TYPES;
 
 const initialState = {
   videogames: [],
   videogameDetail: {},
   genres: [],
+  order:""
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -29,6 +30,22 @@ const rootReducer = (state = initialState, action) => {
 
     case CLEAN_DETAIL:
       return { ...state, videogameDetail: action.payload };
+
+    case ORDER_VIDEOGAMES:
+      let orderValue = ""
+      const orderVideogames = state.videogames.sort((a, b) => {
+        if (a.rating > b.rating) {
+          orderValue = "Ascendiente"
+          return "Ascendiente" === action.payload ? 1 : -1;
+        } 
+        if (a.rating < b.rating) {
+          orderValue = "Descendiente"
+          return "Descendiente" === action.payload ? 1 : -1;}
+        return 0
+      });
+      return {...state, videogames: orderVideogames, order:orderValue }
+
+      
 
 
 
