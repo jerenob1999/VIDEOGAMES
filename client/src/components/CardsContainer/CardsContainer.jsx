@@ -2,11 +2,10 @@ import Card from "../Card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./CardsContainer.module.css";
 import { useState, useEffect } from "react";
-import { orderVideogames } from "../../redux/actions";
+import { orderVideogames, filterBySource } from "../../redux/actions";
 
 const CardContainer = () => {
-  const videogames = useSelector((state) => state.videogames);
-  const order = useSelector(state => state.order)
+  const {videogames,order,source} = useSelector((state) => state);
   const dispatch = useDispatch()
 
   const [page, setPage] = useState(1);
@@ -21,11 +20,10 @@ const CardContainer = () => {
   };
 
   useEffect(() => {
-    if (order === "Ascendiente") dispatch(orderVideogames())
-    if (order === "Descendiente") dispatch(orderVideogames())
+    if (order === "Ascendiente") dispatch(orderVideogames("Ascendiente"))
+    if (order === "Descendiente") dispatch(orderVideogames("Descendiente"))
   },[dispatch])
 
-  const genre = videogames.genre ? videogames.genre.map(genre => genre.name).join(", ") : "";
 
 
   return (
@@ -37,10 +35,6 @@ const CardContainer = () => {
             name={game.name}
             image={game.image}
             genre={!game.genre ? "" : game.genre.map(genre => genre.name).join(", ") }
-            //revisar
-            // genre={game.genre.length && game.genre.map(genre => {
-            //     return `${genre.name}`
-            // })}
             platforms={game.platforms}
             key={game.id}
             released={game.released}

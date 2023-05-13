@@ -8,7 +8,6 @@ const Form = () => {
 
     const dispatch = useDispatch();
     const genres = useSelector(state => state.genres)
-    console.log(genres)
 
 
     useEffect(() => {
