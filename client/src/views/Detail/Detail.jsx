@@ -8,6 +8,10 @@ const Detail = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
     const videogameDetail = useSelector(store => store.videogameDetail)
+    const platforms = videogameDetail.platforms ? videogameDetail.platforms.map(p => p.platform.name).join(", ") : "";
+    const genre = videogameDetail.genre ? videogameDetail.genre.map(genre => genre.name).join(", ") : "";
+
+    
 
     useEffect(() => {
         dispatch(getVideogameDetail(id))
@@ -18,10 +22,12 @@ const Detail = () => {
 
     return (
         <div className={style.container}>
-            <h1>{videogameDetail.name}</h1>
-            <p>{videogameDetail.description} </p>
-            <p>{videogameDetail.rating} </p>
-            <img src={videogameDetail.image} alt={videogameDetail.name} />
+            <h1 className={style.gameTitle} >{videogameDetail.name}</h1>
+            <p>{platforms} </p> 
+            <p>{genre}</p>
+            <p className={style.gameRating} >{videogameDetail.rating} </p>
+            <img className={style.gameImage} src={videogameDetail.image} alt={videogameDetail.name} />
+            <p className={style.gameDescription} >{videogameDetail.description} </p>
 
         </div>
     )

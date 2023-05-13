@@ -25,6 +25,8 @@ const CardContainer = () => {
     if (order === "Descendiente") dispatch(orderVideogames())
   },[dispatch])
 
+  const genre = videogames.genre ? videogames.genre.map(genre => genre.name).join(", ") : "";
+
 
   return (
     <div className={style.cardContainer}>
@@ -34,10 +36,12 @@ const CardContainer = () => {
             id={game.id}
             name={game.name}
             image={game.image}
+            genre={!game.genre ? "" : game.genre.map(genre => genre.name).join(", ") }
             //revisar
             // genre={game.genre.length && game.genre.map(genre => {
             //     return `${genre.name}`
             // })}
+            platforms={game.platforms}
             key={game.id}
             released={game.released}
             rating={game.rating}

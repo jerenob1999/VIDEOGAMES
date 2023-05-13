@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { getVideogamesByName } from "../../redux/actions"
 import { useDispatch } from "react-redux"
+import style from "./SearchBar.module.css"
 
 const SearchBar = () => {
     const dispatch = useDispatch()
@@ -10,7 +11,7 @@ const SearchBar = () => {
         dispatch(getVideogamesByName(query))
     }
     return (
-        <form onSubmit={submitHandler}>
+        <form onSubmit={submitHandler} className={style.container}>
             <input type="text" id="query" value={query} placeholder="Search videogames" onChange={(e) => setQuery(e.target.value)}
              />
             <button type="submit">Search</button>
