@@ -8,6 +8,7 @@ const {
   GET_VIDEOGAMES_BY_NAME,
   ORDER_VIDEOGAMES,
   GET_VIDEOGAMES_BY_SOURCE,
+  SET_SOURCE,
 } = ACTION_TYPES;
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
   genres: [],
   order: "",
   source: "",
+  filteredVideogames: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -40,21 +42,26 @@ const rootReducer = (state = initialState, action) => {
 
     case CLEAN_DETAIL:
       return { ...state, videogameDetail: action.payload };
+      
 
     case GET_VIDEOGAMES_BY_SOURCE:
-      let videogamesBySource;
-      if (action.payload === "API") videogamesBySource = state.videogames.filter((game) => game.created == false)
-      if (action.payload === "BDD") videogamesBySource = state.videogames.filter((game) => game.created == true);
-      if (action.payload === "TODOS") videogamesBySource = state.videogames
+      let videogamesBySource 
+      if (state.source === "API") videogamesBySource = state.videogames.filter((game) => game.created == false)
+      if (state.source === "CREATED") videogamesBySource = state.videogames.filter((game) => game.created == true);
+      if (state.source === "") videogamesBySource = state.videogames
       return {
         ...state,
-        videogames: videogamesBySource,
-        source: action.payload,
+        filteredVideogames: videogamesBySource
       };
+
+    case SET_SOURCE:
+      return {
+        ...state, source:action.payload
+      }
 
     case ORDER_VIDEOGAMES:
       let orderValue = "";
-      const orderVideogames = state.videogames.sort((a, b) => {
+      const orderVideogames = [...state.videogames].sort((a, b) => {
         if (a.rating > b.rating) {
           orderValue = "Ascendiente";
           return "Ascendiente" === action.payload ? 1 : -1;

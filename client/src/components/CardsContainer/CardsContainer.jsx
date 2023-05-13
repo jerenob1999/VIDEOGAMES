@@ -5,11 +5,12 @@ import { useState, useEffect } from "react";
 import { orderVideogames, filterBySource } from "../../redux/actions";
 
 const CardContainer = () => {
-  const {videogames,order,source} = useSelector((state) => state);
+  const {videogames,source,filteredVideogames} = useSelector((state) => state);
   const dispatch = useDispatch()
 
   const [page, setPage] = useState(1);
-  const gamesToShow = videogames.slice((page - 1) * 15, page * 15);
+  const gamesToShow =  source ? filteredVideogames.slice((page - 1) * 15, page * 15)
+                              : videogames.slice((page - 1) * 15, page * 15)
 
   const handleNextPage = () => {
     setPage(page + 1);
@@ -20,9 +21,8 @@ const CardContainer = () => {
   };
 
   useEffect(() => {
-    if (order === "Ascendiente") dispatch(orderVideogames("Ascendiente"))
-    if (order === "Descendiente") dispatch(orderVideogames("Descendiente"))
-  },[dispatch])
+    if (source) dispatch(filterBySource(source))
+  },[dispatch,source])
 
 
 
