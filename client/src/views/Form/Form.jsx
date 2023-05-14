@@ -20,38 +20,38 @@ const Form = () => {
 
 
 
-    const [form, setForm] = useState({
-        name: "",
-        description: "",
-        platforms: "",
-        genres: [],
-        image: "",
-        releaseDate: ""
-    })
-
-    const [errors, setErrors] = useState({
-        name: "",
-        description: "",
-        platforms: "",
-        genres: "",
-        image: "",
-        releaseDate: ""
-    })
-
+     
+     const [errors, setErrors] = useState({
+         name: "",
+         description: "",
+         platforms: "",
+         genres: "",
+         image: "",
+         releaseDate: ""
+        })
+        
+        const [form, setForm] = useState({
+            name:"",
+            description:"",
+            platforms:"",
+            genre:[],
+            image:"",
+            releaseDate:""
+        })
     const changeHandler = (event) => {
         const property = event.target.name;
         const value = event.target.value;
-
-
-        console.log(value)
-        validate({ ...form, [property]: value })
         setForm({ ...form, [property]: value })
     };
 
-    const validate = (form) => {
-        /^.{1,30}$/.test(form.name) ? setErrors({ ...errors, name: "" })
-            : setErrors({ ...errors, name: "invalid name" })
+    const [options, setOptions] = useState([])
+
+    const handleOptions = (event) => {
+        setForm({...form,genre:[...form.genre,event.target.value]})
     }
+ 
+
+
 
     const genresHandler = () => {
         if (!genres.length) {
@@ -61,15 +61,15 @@ const Form = () => {
 
     const submitHandler = (event) => {
         event.preventDefault()
-        axios.post("http://localhost:3001/videogames",form)
-        .then(res => alert(res))
+        try {
+            axios.post("http://localhost:3001/videogames",form)
+            .then(res => alert("Videogame created succesfully"))
+            
+        } catch (error) {
+            console.log(error.request.data)
+        }
     }
 
-    const [options, setOptions] = useState([])
-
-    const handleOptions = (event) => {
-        setOptions([...options,event.target.value])
-    }
 
     return (
         <form className={style.form} onSubmit={submitHandler}>
@@ -84,14 +84,14 @@ const Form = () => {
             </div>
             <div>
                 <label htmlFor="genres">GENRES</label>
-                <select multiple id="genres"  onChange={handleOptions} onClick={() => console.log(options)}> 
+                <select multiple id="genres"  onChange={handleOptions} onClick={() => console.log(form)} > 
                 <option disabled>-- Select a genre --</option>
                 {genres.map((genre) => (
-                    <option key={genre.id}   value={genre.name} >{genre.name}</option>
+                    <option key={genre.id} value={genre.id} >{genre.name}</option>
                     ))}
                 
                 </select>
-                <p>opciones seleccionadas: {options.join(",")} </p>
+                <p>opciones seleccionadas: {form.genre.join(",")} </p>
                  
             </div>
             <div>
