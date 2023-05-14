@@ -2,26 +2,29 @@ import { useEffect, useState } from "react"
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux"
 import { getGenres } from "../../redux/actions";
+import style from "./Form.module.css"
 
 
 const Form = () => {
 
     const dispatch = useDispatch();
-    const genres = useSelector(state => state.genres)
+    const {genres} = useSelector(state => state)
 
 
-    useEffect(() => {
-        if (!genres.length) {
-            dispatch(getGenres())
-        }
-    },[])
+
+     useEffect(() => {
+         if (!genres.length) {
+             dispatch(getGenres())
+         }
+     },[])
+
 
 
     const [form, setForm] = useState({
         name: "",
         description: "",
         platforms: "",
-        genres: "",
+        genres: [],
         image: "",
         releaseDate: ""
     })
@@ -40,7 +43,7 @@ const Form = () => {
         const value = event.target.value;
 
 
-
+        console.log(value)
         validate({ ...form, [property]: value })
         setForm({ ...form, [property]: value })
     };
@@ -50,14 +53,26 @@ const Form = () => {
             : setErrors({ ...errors, name: "invalid name" })
     }
 
+    const genresHandler = () => {
+        if (!genres.length) {
+            dispatch(getGenres())
+        }
+    }
+
     const submitHandler = (event) => {
         event.preventDefault()
         axios.post("http://localhost:3001/videogames",form)
         .then(res => alert(res))
     }
 
+    const [options, setOptions] = useState([])
+
+    const handleOptions = (event) => {
+        setOptions([...options,event.target.value])
+    }
+
     return (
-        <form onSubmit={submitHandler}>
+        <form className={style.form} onSubmit={submitHandler}>
             <div>
                 <label>NAME</label>
                 <input type="text" value={form.name} onChange={changeHandler} name="name" />
@@ -68,18 +83,16 @@ const Form = () => {
                 <input type="text" value={form.platforms} onChange={changeHandler} name="platforms" />
             </div>
             <div>
-                <label>GENRES
-                <select multiple={true} value={genres.name} onChange={changeHandler}> 
+                <label htmlFor="genres">GENRES</label>
+                <select multiple id="genres"  onChange={handleOptions} onClick={() => console.log(options)}> 
+                <option disabled>-- Select a genre --</option>
                 {genres.map((genre) => (
-               <option key={genre.id} value={genre.id}>{genre.name}</option>
-          ))}
+                    <option key={genre.id}   value={genre.name} >{genre.name}</option>
+                    ))}
                 
                 </select>
-                    
-                    
-                    
-                     </label>
-                <input type="text" value={form.GENRES} onChange={changeHandler} name="genres" />
+                <p>opciones seleccionadas: {options.join(",")} </p>
+                 
             </div>
             <div>
                 <label>IMAGE</label>
@@ -93,9 +106,10 @@ const Form = () => {
                 <label>DESCRIPTION </label>
                 <input type="text" value={form.description} onChange={changeHandler} name="description" />
             </div>
-            <button type="submit">SUBMIT</button>
+            <button type="submit" onClick={() => console.log(form)} >SUBMIT</button>
         </form>
     )
 }
 
 export default Form
+
