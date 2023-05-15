@@ -8,7 +8,8 @@ const videogamesFilter = (videogames) => {
       platforms: videogame.platforms,
       image: videogame.background_image,
       rating: videogame.rating,
-      releaseDate: videogame.release,
+      releaseDate: videogame.released,
+      created: false,
       genre: videogame.genres.map(genre => {
         return {
           id:genre.id,

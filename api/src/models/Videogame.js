@@ -35,6 +35,10 @@ module.exports = (sequelize) => {
         type: DataTypes.FLOAT,
         defaultValue: 0,
       },
+      created: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      }
     },
     { timestamps: false }
   );
