@@ -59,3 +59,7 @@ export const setOrder = (order) => {
   return {type: ACTION_TYPES.SET_ORDER, payload: order}
 }
 
+export const filterByGenre = (genre) => {
+  return {type: ACTION_TYPES.GET_VIDEOGAMES_BY_GENRE, payload: genre}
+}
+

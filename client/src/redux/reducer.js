@@ -8,6 +8,7 @@ const {
   GET_VIDEOGAMES_BY_NAME,
   ORDER_VIDEOGAMES,
   GET_VIDEOGAMES_BY_SOURCE,
+  GET_VIDEOGAMES_BY_GENRE,
   SET_SOURCE,
   SET_ORDER,
 } = ACTION_TYPES;
@@ -67,6 +68,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         filteredVideogames: videogamesBySource,
       };
+
+      case GET_VIDEOGAMES_BY_GENRE:
+        return {
+          ...state,
+          videogames: [...state.videogames].filter(game =>  Array.isArray(game.genre) && game.genre.some(genre => action.payload.includes(genre.name)) )
+        }
 
     case SET_SOURCE:
       return {

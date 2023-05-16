@@ -1,7 +1,9 @@
 import { setSource } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getGenres } from "../../redux/actions";
+import { getGenres,filterByGenre } from "../../redux/actions";
+import style from "./Filter.module.css"
+
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -15,12 +17,16 @@ const Filter = () => {
 
   const [origin, setOrigin] = useState("");
   const {genres} = useSelector(state => state)
-  const [genre, setGenre] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState([]);
 
   const handleDropdown = (event) => {
     const property = event.target.name
     setDisplayDropdown({...displayDropdown,[property]:!displayDropdown[property]});
   };
+
+  const handleGenreSelect = (genre) => {
+     dispatch(filterByGenre(genre))
+  }
 
   useEffect(() => {
     if (!genres.length) {
@@ -35,24 +41,28 @@ const Filter = () => {
   }, [dispatch, origin]);
 
   return (
-    <div>
+    <div className={style.filter}>
 
-      <section>
-      <div onClick={handleDropdown} >
+      <section className={style.section}>
+      <div onClick={handleDropdown}  >
         <input
-          type="text"
           readOnly
           placeholder="Filter by genre"
-          value={genre}
+          value={selectedGenre}
           name="genre" 
         />
       </div>
       {displayDropdown.genre ? (
         <div>
+          <div onClick={() => {
+            setSelectedGenre(["All"])
+            handleDropdown({target: {name: "genre"}})
+          }} >All</div>
           {genres.map(genre => {
             return (
-              <div key={genre.id} onClick={() => {
-                setGenre(genre.name)
+              <div className={style.sectionOptions} key={genre.id} onClick={() => {
+                setSelectedGenre([...selectedGenre,genre.name])
+                handleGenreSelect(genre.name)
                 handleDropdown({ target: { name: "genre" } }) }}>{genre.name}</div>
             )
           })}
@@ -62,7 +72,7 @@ const Filter = () => {
 
 
 
-    <section>
+    <section className={style.section}>
       <div onClick={handleDropdown}>
         <input
           type="text"
@@ -76,7 +86,7 @@ const Filter = () => {
       {displayDropdown.source ? (
         <div name="source">
           <div
-             
+             className={style.sectionOptions}
              onClick={() => {
               setOrigin("API");
               handleDropdown({ target: { name: "source" } });
@@ -86,6 +96,7 @@ const Filter = () => {
           </div>
 
           <div
+          className={style.sectionOptions}
             onClick={() => {
               setOrigin("CREATED");
               handleDropdown({ target: { name: "source" } });
@@ -95,6 +106,7 @@ const Filter = () => {
           </div>
 
           <div
+          className={style.sectionOptions}
             onClick={() => {
               setOrigin("ALL");
               handleDropdown({ target: { name: "source" } });
