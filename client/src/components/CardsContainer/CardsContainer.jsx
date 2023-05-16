@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { orderVideogames, filterBySource } from "../../redux/actions";
 
 const CardContainer = () => {
-  const {videogames,source,filteredVideogames} = useSelector((state) => state);
+  const {videogames,source,filteredVideogames,order} = useSelector((state) => state);
   const dispatch = useDispatch()
 
   const [page, setPage] = useState(1);
@@ -34,7 +34,7 @@ const CardContainer = () => {
             id={game.id}
             name={game.name}
             image={game.image}
-            genre={!game.genre ? "" : game.genre.map(genre => genre.name).join(", ") }
+            // genre={game.genre.map(genre => genre.name).join(", ") } checkear el genre en creados
             platforms={game.platforms}
             key={game.id}
             released={game.released}

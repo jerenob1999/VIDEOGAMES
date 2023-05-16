@@ -4,20 +4,19 @@ import { orderVideogames, setOrder } from "../../redux/actions"
 
 const Order = () => {
     const dispatch = useDispatch()
-    const order = useSelector(state => state.order)
-    const [organization,setOrganization] = useState("");
-    const [displayDropdown,setDisplayDropdown] = useState(false)
+    const [options, setOptions] = useState(["RATING UP", "RATING DOWN", "LETTER UP", "LETTER DOWN", "DEFAULT"])
+    const [selectedOption, setSelectedOption] = useState("");
+    const [displayDropdown,setDisplayDropdown] = useState(false);
 
     const handleDropdown = () => {
         setDisplayDropdown(!displayDropdown)
     }
 
-    useEffect(() => {
-        if (organization !== "") {
-          dispatch(setOrder(organization));
-        }
-        console.log(order)
-      }, [dispatch, organization]);
+    const handleOrder = (selectedOrder) => {
+        setSelectedOption(selectedOrder)
+        dispatch(orderVideogames(selectedOrder))
+    }
+
     
  
 return (
@@ -27,16 +26,16 @@ return (
         type="text"
         readOnly
         placeholder="Order by..."
-        value={organization}
+        value={selectedOption}
         />
     </div>
     {displayDropdown ? (
         <div>
 
-            {order.options.map(option => {
+            {options.map(option => {
                 return (
                     <div key={option} onClick={() => {
-                        setOrganization(option)
+                        handleOrder(option)
                         handleDropdown()
                     }}>
                         {option}
