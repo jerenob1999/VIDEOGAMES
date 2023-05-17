@@ -63,3 +63,10 @@ export const filterByGenre = (genre) => {
   return {type: ACTION_TYPES.GET_VIDEOGAMES_BY_GENRE, payload: genre}
 }
 
+export const resetFilters = (defaultVideogames) => {
+  return function (dispatch) {
+    dispatch({type: ACTION_TYPES.RESET_FILTERS, payload: defaultVideogames})
+  }
+  
+}
+

@@ -11,6 +11,7 @@ const {
   GET_VIDEOGAMES_BY_GENRE,
   SET_SOURCE,
   SET_ORDER,
+  RESET_FILTERS
 } = ACTION_TYPES;
 
 const initialState = {
@@ -19,6 +20,7 @@ const initialState = {
   genres: [],
   source: "",
   filteredVideogames: [],
+  resetVideogames: false,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -63,7 +65,7 @@ const rootReducer = (state = initialState, action) => {
         videogamesBySource = state.videogames.filter(
           (game) => game.created == true
         );
-      if (state.source === "ALL") videogamesBySource = state.videogames;
+      if (state.source === "ALL") return {...state,resetVideogames:true}
       return {
         ...state,
         filteredVideogames: videogamesBySource,
@@ -92,6 +94,12 @@ const rootReducer = (state = initialState, action) => {
         return {...state, videogames: [...state.videogames].sort((a, b) => b.name.localeCompare(a.name))}
       if (action.payload === "DEFAULT")
          return {...state}
+
+    case RESET_FILTERS:
+      return {
+        ...state,
+        filteredVideogames: action.payload
+      }
       
 
     default:

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector,useDispatch} from "react-redux"
-import { orderVideogames, setOrder } from "../../redux/actions"
+import { orderVideogames, setOrder, resetFilters } from "../../redux/actions"
 
 const Order = () => {
     const dispatch = useDispatch()
@@ -14,6 +14,7 @@ const Order = () => {
 
     const handleOrder = (selectedOrder) => {
         setSelectedOption(selectedOrder)
+        if(selectedOrder === "DEFAULT") dispatch(resetFilters())
         dispatch(orderVideogames(selectedOrder))
     }
 

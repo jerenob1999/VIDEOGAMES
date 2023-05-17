@@ -11,6 +11,7 @@ export const ACTION_TYPES = Object.freeze({
   GET_VIDEOGAMES_BY_GENRE: "GET_VIDEOGAMES_BY_GENRE",
   SET_SOURCE: "SET_SOURCE",
   SET_ORDER: "SET_ORDER",
+  RESET_FILTERS: "RESET_FILTERS"
 });
 
 export const ENDPOINTS = Object.freeze({
