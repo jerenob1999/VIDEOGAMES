@@ -77,3 +77,9 @@ export const setResetFalse = () => {
     dispatch({type: ACTION_TYPES.SET_RESET_TO_FALSE})
   }
 }
+
+export const setSearched = (input) => {
+  return function (dispatch) {
+    dispatch({type: ACTION_TYPES.SET_SEARCHED, payload:input})
+  }
+}

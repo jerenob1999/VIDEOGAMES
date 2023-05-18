@@ -1,7 +1,8 @@
 import { useState } from "react"
-import { getVideogamesByName } from "../../redux/actions"
-import { useDispatch } from "react-redux"
+import { getVideogamesByName,setSearched } from "../../redux/actions"
+import { useDispatch,useSelector } from "react-redux"
 import style from "./SearchBar.module.css"
+
 
 const SearchBar = () => {
     const dispatch = useDispatch()
@@ -9,6 +10,7 @@ const SearchBar = () => {
     const submitHandler = (event) => {
         event.preventDefault();
         dispatch(getVideogamesByName(query))
+        dispatch(setSearched(query))
     }
     return (
         <form onSubmit={submitHandler} className={style.container}>

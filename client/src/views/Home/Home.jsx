@@ -8,14 +8,16 @@ import Order from "../../components/Order/Order"
 import { filterBySource, resetFilters, orderVideogames, setResetFalse } from "../../redux/actions";
 
 const Home = () => {
-    const {source,videogames,resetVideogames,order} = useSelector(state => state)
+    const {source,videogames,resetVideogames,order,searched} = useSelector(state => state)
     const dispatch = useDispatch()
     const reset = useRef(null);
+    const currentVideogames = useRef(videogames)
     
 
     useEffect(() => {
-      dispatch(getVideogames())
-    },[dispatch])
+        if(!searched) dispatch(getVideogames())
+    },[dispatch,searched])
+
 
 
     useEffect(() => {

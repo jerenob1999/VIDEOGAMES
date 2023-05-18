@@ -13,6 +13,7 @@ export const ACTION_TYPES = Object.freeze({
   SET_ORDER: "SET_ORDER",
   RESET_FILTERS: "RESET_FILTERS",
   SET_RESET_TO_FALSE: "SET_RESET_TO_FALSE",
+  SET_SEARCHED: "SET_SEARCHED"
 });
 
 export const ENDPOINTS = Object.freeze({

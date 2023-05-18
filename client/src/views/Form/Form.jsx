@@ -82,7 +82,7 @@ const Form = () => {
             </div>
             <div>
                 <label htmlFor="genres" name="genres">GENRES</label>
-                <select name="genres"  id="genres" onChange={handleOptions} onClick={showHandler}>
+                <select name="genres" className={style.select} id="genres" onChange={handleOptions} onClick={showHandler}>
                     <option disabled>-- Select a genre --</option>
                     {show && genres.map((genre) => (
                         <option key={genre.id} value={`${genre.id},${genre.name}`}>{genre.name}</option>

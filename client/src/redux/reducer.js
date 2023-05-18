@@ -13,6 +13,7 @@ const {
   SET_ORDER,
   RESET_FILTERS,
   SET_RESET_TO_FALSE,
+  SET_SEARCHED,
 } = ACTION_TYPES;
 
 const initialState = {
@@ -23,6 +24,7 @@ const initialState = {
   filteredVideogames: [],
   resetVideogames: false,
   order: "",
+  searched: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -100,13 +102,20 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         videogames: action.payload,
         resetVideogames:true,
-        source:""
+        source:"",
+        searched:"",
       }
     
     case SET_RESET_TO_FALSE:
       return {
         ...state,
         resetVideogames:false,
+      }
+
+    case SET_SEARCHED:
+      return {
+        ...state,
+        searched: action.payload
       }
        
     
