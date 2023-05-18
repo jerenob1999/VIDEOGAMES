@@ -32,7 +32,7 @@ form button {
     background-color: #23527c;
   }
 
-  .error-message {
+  .errors {
     color: red;
     margin-top: 5px;
     font-size: 12px;

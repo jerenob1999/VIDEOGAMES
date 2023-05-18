@@ -11,7 +11,12 @@ const Form = () => {
     const { genres } = useSelector(state => state)
     const [show, setShow] = useState(false)
     const [platforms, setPlatforms] = useState(["PC","Playstation","Playstation 2","Playstation 3","Playstation 4","Playstation 5","PSP","Xbox","Xbox One","Xbox Series S/X","Xbox 360"])
+    const [regex, setRegex] = useState({
+        nameRegex:/^[\w\s]{1,50}$/,
+        descriptionRegex:/^[\w\s]{1,50}$/,
 
+    })
+    const currentDate = new Date().toISOString().split('T')[0];
     const showHandler = () => {
         setShow(true)
     }
@@ -43,12 +48,7 @@ const Form = () => {
         releaseDate: "",
         rating: ""
     })
-    const changeHandler = (event) => {
-        const property = event.target.name;
-        const value = event.target.value;
-        setForm({ ...form, [property]: value })
-    };
-
+    
     const [options, setOptions] = useState([])
     const handleOptions = (event) => {
         const [id, name] = event.target.value.split(",");
@@ -56,26 +56,58 @@ const Form = () => {
         setForm({ ...form, genre: [...form.genre, id] })
         console.log(options)
     }
-
+    
     const submitHandler = (event) => {
         event.preventDefault()
         try {
             axios.post("http://localhost:3001/videogames", form)
-                .then(res => alert("Videogame created succesfully"))
-
+            .then(alert("Videogame created succesfully"))
         } catch (error) {
             console.log(error.request.data)
         }
     }
-
     
+    const changeHandler = (event) => {
+        const property = event.target.name;
+        const value = event.target.value;
+        validate({ ...form, [property]: value })
+        if(property === "genre") setForm({ ...form, [property]: [...form[property], value] }); 
+        else setForm({ ...form, [property]: value }) 
+    };
+    const validate = (form) => {
+        setErrors((prevErrors) => {
+          let updatedErrors = { ...prevErrors };
+      
+          if (regex.nameRegex.test(form.name)) {
+            updatedErrors = { ...updatedErrors, name: "" };
+          } else {
+            updatedErrors = { ...updatedErrors, name: "name is too long" };
+          }
+      
+          if (form.name === "") {
+            updatedErrors = { ...updatedErrors, name: "name cannot be empty" };
+          }
+
+          if (regex.descriptionRegex.test(form.description)) {
+            updatedErrors = {...updatedErrors, description: ""};
+          } else {
+            updatedErrors = { ...updatedErrors, description: "description is too long" }
+          }
+
+          if (form.description === "") {
+            updatedErrors = { ...updatedErrors, description: "description cannot be empty"}
+          } 
+      
+          return updatedErrors;
+        });
+      };
 
     return (
         <form className={style.form} onSubmit={submitHandler}>
             <div>
                 <label>NAME</label>
                 <input type="text" value={form.name} onChange={changeHandler} name="name" />
-                {errors.name && <span>{errors.name}</span>}
+                {errors.name && <span className={style.errors} >{errors.name}</span>}
             </div>
             <div>
                 <label>PLATFORMS </label>
@@ -89,7 +121,6 @@ const Form = () => {
                         <option key={genre.id} value={`${genre.id},${genre.name}`}>{genre.name}</option>
                     ))}
                 </select>
-
             </div>
             <div>
                 <label>IMAGE</label>
@@ -97,7 +128,7 @@ const Form = () => {
             </div>
             <div>
                 <label>RELEASEDATE </label>
-                <input type="date" value={form.releaseDate} onChange={changeHandler} name="releaseDate" />
+                <input type="date" value={form.releaseDate} onChange={changeHandler} name="releaseDate" min="2023-01-01" max={currentDate} />
             </div>
             <div>
                 <label>RATING </label>
@@ -106,8 +137,9 @@ const Form = () => {
             <div>
                 <label>DESCRIPTION </label>
                 <input type="text" value={form.description} onChange={changeHandler} name="description" />
+                {errors.description && <span className={style.errors}>{errors.description}</span>}
             </div>
-            <button className={style.submitButton} type="submit" onClick={() => console.log(form)} >SUBMIT</button>
+            <button className={style.submitButton} type="submit" disabled={!!errors.name || !!errors.description}>SUBMIT</button>
         </form>
     )
 }
