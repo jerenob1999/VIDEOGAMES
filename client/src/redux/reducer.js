@@ -98,7 +98,8 @@ const rootReducer = (state = initialState, action) => {
     case RESET_FILTERS:
       return {
         ...state,
-        filteredVideogames: action.payload
+        filteredVideogames: action.payload,
+        resetVideogames:false,
       }
       
 

@@ -18,9 +18,7 @@ const Form = () => {
 
 
     useEffect(() => {
-        if (!genres.length) {
-            dispatch(getGenres())
-        }
+        dispatch(getGenres())
     }, [])
 
 
@@ -55,6 +53,7 @@ const Form = () => {
         const [id, name] = event.target.value.split(",");
         setOptions([...options, name])
         setForm({ ...form, genre: [...form.genre, id] })
+        console.log(options)
     }
 
     const submitHandler = (event) => {
@@ -82,29 +81,13 @@ const Form = () => {
                 <input type="text" value={form.platforms} onChange={changeHandler} name="platforms" />
             </div>
             <div>
-                <label htmlFor="genres">GENRES</label>
-                <select multiple id="genres" onChange={handleOptions} onClick={showHandler}>
+                <label htmlFor="genres" name="genres">GENRES</label>
+                <select name="genres"  id="genres" onChange={handleOptions} onClick={showHandler}>
                     <option disabled>-- Select a genre --</option>
                     {show && genres.map((genre) => (
                         <option key={genre.id} value={`${genre.id},${genre.name}`}>{genre.name}</option>
                     ))}
-
                 </select>
-                <div>
-                    <p>GENRES</p>
-                    <p>
-                        {options.length && options.map(option => {
-                            return (
-                                <span>  <button className={style.genreButton}>x</button>
-                                    <div className={style.divGenres}>    <p>{`${option}-`}</p></div>
-                                </span>
-
-
-
-                            )
-                        })}
-                    </p>
-                </div>
 
             </div>
             <div>
