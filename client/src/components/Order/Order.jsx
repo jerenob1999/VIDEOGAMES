@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState,useRef } from "react"
 import { useSelector,useDispatch} from "react-redux"
-import { orderVideogames, setOrder, resetFilters } from "../../redux/actions"
+import { setOrder } from "../../redux/actions"
 
-const Order = () => {
+const Order = ({ resetVideogames }) => {
     const dispatch = useDispatch()
-    const [options, setOptions] = useState(["RATING UP", "RATING DOWN", "LETTER UP", "LETTER DOWN", "DEFAULT"])
+    const [options, setOptions] = useState(["RATING UP", "RATING DOWN", "LETTER UP", "LETTER DOWN"])
     const [selectedOption, setSelectedOption] = useState("");
     const [displayDropdown,setDisplayDropdown] = useState(false);
 
@@ -16,6 +16,12 @@ const Order = () => {
         setSelectedOption(selectedOrder)
         dispatch(setOrder(selectedOrder))
     }
+
+    useEffect(() => {
+        if (resetVideogames) {
+          setSelectedOption("");
+        }
+      }, [resetVideogames]);
 
     
  

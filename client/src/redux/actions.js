@@ -68,6 +68,12 @@ export const filterByGenre = (genre) => {
 export const resetFilters = (defaultVideogames) => {
   return function (dispatch) {
     dispatch({type: ACTION_TYPES.RESET_FILTERS, payload: defaultVideogames})
+  }  
+}
+
+
+export const setResetFalse = () => {
+  return function (dispatch) {
+    dispatch({type: ACTION_TYPES.SET_RESET_TO_FALSE})
   }
-  
 }
