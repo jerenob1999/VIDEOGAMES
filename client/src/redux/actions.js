@@ -56,7 +56,9 @@ export const setSource = (source) => {
 };
 
 export const setOrder = (order) => {
-  return {type: ACTION_TYPES.SET_ORDER, payload: order}
+  return function (dispatch) {
+    dispatch({type: ACTION_TYPES.SET_ORDER, payload: order})
+  }
 }
 
 export const filterByGenre = (genre) => {

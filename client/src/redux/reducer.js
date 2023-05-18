@@ -21,6 +21,7 @@ const initialState = {
   source: "",
   filteredVideogames: [],
   resetVideogames: false,
+  order: "DEFAULT",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -42,15 +43,6 @@ const rootReducer = (state = initialState, action) => {
 
     case GET_VIDEOGAMES_BY_NAME:
       return { ...state, videogames: action.payload };
-
-    case SET_ORDER:
-      return {
-        ...state,
-        order: {
-          ...state.order,
-          optionSelected: action.payload,
-        },
-      };
 
     case CLEAN_DETAIL:
       return { ...state, videogameDetail: action.payload };
@@ -84,8 +76,10 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case ORDER_VIDEOGAMES:
+      
       if (action.payload === "RATING UP")
         return { ...state, videogames: [...state.videogames].sort((a, b) => a.rating - b.rating) };
+
       if (action.payload === "RATING DOWN")
         return { ...state, videogames: [...state.videogames].sort((a,b) => b.rating - a.rating)};
       if (action.payload === "LETTER UP")
@@ -93,7 +87,13 @@ const rootReducer = (state = initialState, action) => {
       if (action.payload === "LETTER DOWN")
         return {...state, videogames: [...state.videogames].sort((a, b) => b.name.localeCompare(a.name))}
       if (action.payload === "DEFAULT")
-         return {...state}
+         return {...state, resetVideogames:true}
+
+    case SET_ORDER:
+      return {
+        ...state,
+        order: action.payload
+      }
 
     case RESET_FILTERS:
       return {

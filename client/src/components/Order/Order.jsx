@@ -14,8 +14,7 @@ const Order = () => {
 
     const handleOrder = (selectedOrder) => {
         setSelectedOption(selectedOrder)
-        if(selectedOrder === "DEFAULT") dispatch(resetFilters())
-        dispatch(orderVideogames(selectedOrder))
+        dispatch(setOrder(selectedOrder))
     }
 
     
