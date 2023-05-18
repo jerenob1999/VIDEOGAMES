@@ -82,7 +82,6 @@ const rootReducer = (state = initialState, action) => {
       
       if (action.payload === "RATING UP")
         return { ...state, videogames: [...state.videogames].sort((a, b) => a.rating - b.rating) };
-
       if (action.payload === "RATING DOWN")
         return { ...state, videogames: [...state.videogames].sort((a,b) => b.rating - a.rating)};
       if (action.payload === "LETTER UP")

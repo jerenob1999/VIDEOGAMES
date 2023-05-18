@@ -1,0 +1,18 @@
+.filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 60px; 
+    left: 20px; 
+    z-index: 1; 
+  }
+
+  .filter select {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+

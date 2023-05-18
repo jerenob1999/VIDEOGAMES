@@ -10,6 +10,7 @@ const Form = () => {
     const dispatch = useDispatch();
     const { genres } = useSelector(state => state)
     const [show, setShow] = useState(false)
+    const [platforms, setPlatforms] = useState(["PC","Playstation","Playstation 2","Playstation 3","Playstation 4","Playstation 5","PSP","Xbox","Xbox One","Xbox Series S/X","Xbox 360"])
 
     const showHandler = () => {
         setShow(true)

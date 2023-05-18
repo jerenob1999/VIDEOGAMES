@@ -23,7 +23,6 @@ const Order = ({ resetVideogames }) => {
         }
       }, [resetVideogames]);
 
-    
  
 return (
   <section>
