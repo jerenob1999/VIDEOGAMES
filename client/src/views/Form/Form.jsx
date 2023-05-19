@@ -13,7 +13,7 @@ const Form = () => {
     const [platforms, setPlatforms] = useState(["PC","Playstation","Playstation 2","Playstation 3","Playstation 4","Playstation 5","PSP","Xbox","Xbox One","Xbox Series S/X","Xbox 360"])
     const [regex, setRegex] = useState({
         nameRegex:/^[\w\s]{1,50}$/,
-        descriptionRegex:/^[\w\s]{1,50}$/,
+        descriptionRegex:/^[\s\S]{1,500}$/,
 
     })
     const currentDate = new Date().toISOString().split('T')[0];
@@ -36,7 +36,8 @@ const Form = () => {
         platforms: "",
         genres: "",
         image: "",
-        releaseDate: ""
+        releaseDate: "",
+        submit:""
     })
 
     const [form, setForm] = useState({
@@ -46,7 +47,8 @@ const Form = () => {
         genre: [],
         image: "",
         releaseDate: "",
-        rating: ""
+        rating: "",
+        submit: "",
     })
     
     const [options, setOptions] = useState([])
@@ -58,14 +60,18 @@ const Form = () => {
     }
     
     const submitHandler = (event) => {
-        event.preventDefault()
-        try {
-            axios.post("http://localhost:3001/videogames", form)
-            .then(alert("Videogame created succesfully"))
-        } catch (error) {
-            console.log(error.request.data)
-        }
-    }
+        event.preventDefault();
+        axios
+          .post("http://localhost:3001/videogames", form)
+          .then((res) => {
+            setErrors({...errors, submit:""})
+            setForm({...form,submit:"VIDEOGAME CREATED SUCCESFULLY"})
+          })
+          .catch((error) => {
+            setForm({...form,submit:""})
+            setErrors({ ...errors, submit: "ERROR AT SUBMITING" });
+          });
+      };
     
     const changeHandler = (event) => {
         const property = event.target.name;
@@ -140,6 +146,10 @@ const Form = () => {
                 {errors.description && <span className={style.errors}>{errors.description}</span>}
             </div>
             <button className={style.submitButton} type="submit" disabled={!!errors.name || !!errors.description}>SUBMIT</button>
+            <div className={style.submit}>
+            {errors.submit && <span className={style.errors}>{errors.submit}</span>}
+            {form.submit && <span className={style.success}>{form.submit}</span>}
+            </div>
         </form>
     )
 }

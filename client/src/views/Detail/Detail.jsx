@@ -8,15 +8,13 @@ const Detail = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
     const videogameDetail = useSelector(store => store.videogameDetail)
-    const platforms = videogameDetail.platforms ? videogameDetail.platforms.map(p => p.platform.name).join(", ") : "";
+    const platforms = Array.isArray(videogameDetail.platforms)  && videogameDetail.platforms.map(p => p.platform.name).join(", ");
     const genre = videogameDetail.genre ? videogameDetail.genre.map(genre => genre.name).join(", ") : "";
 
-    
-
-    
 
     useEffect(() => {
         dispatch(getVideogameDetail(id))
+        console.log(videogameDetail)
         return () => {
         dispatch(cleanvideogameDetail())
         }

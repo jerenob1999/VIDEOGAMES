@@ -26,7 +26,7 @@ const CardContainer = () => {
             id={game.id}
             name={game.name}
             image={game.image}
-            // genre={game.genre.map(genre => genre.name).join(", ") } checkear el genre en creados
+            genre={game.genre}
             platforms={game.platforms}
             key={game.id}
             released={game.released}
