@@ -1,0 +1,16 @@
+.img{
+    max-width: 1200px;
+    width: 100%;
+    height: auto;
+    opacity:0;
+    transition: 1s;
+    border-radius: 6px;
+}
+
+.loaded{
+    opacity: 1;
+}
+
+.imgContainer{
+    margin-top: 4cm;
+}

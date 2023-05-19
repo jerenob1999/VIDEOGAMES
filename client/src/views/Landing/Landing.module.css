@@ -2,33 +2,22 @@
     position: relative;
     width: 100%;
     height: 100vh;
+    background-color: rgb(19, 19, 19);
   }
 
   
-.landing video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
+  .title{
+    font-size: 40px;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    font-weight: bold;
+    white-space: pre;
+    color: aliceblue;
   }
 
-  .landing h1 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    color:rgb(255, 255, 255);
-    transition-duration: 0.2s;
+  .landing Link{
+    text-decoration: none;
   }
-
-  .landing h1:hover {
-    color:rgb(255, 255, 255);
-  }
-
 
   .buttonContainer {
     position: absolute;
@@ -42,6 +31,7 @@
     border-radius: 16px;
     transition-duration: 0.2s;
     color: aliceblue;
+    margin-top: 10cm;
   }
 
   .buttonContainer:hover {
