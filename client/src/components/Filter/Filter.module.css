@@ -1,7 +1,5 @@
 .filter {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     margin-bottom: 20px;
     position: absolute;
     top: 60px; 
@@ -9,10 +7,29 @@
     z-index: 1; 
   }
 
-  .filter select {
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  .filter input {
+    border-radius: 5px;
+    background-color: rgb(77, 77, 77);
+    border: 1cm black;
   }
+
+  .sectionOptions {
+    color: white;
+    background-color: rgb(53, 53, 53);
+    transition-duration: 0.2s;
+    border: 1px solid  rgb(88, 88, 88);
+    border-radius: 7px;
+  }
+
+  .sectionOptions:hover{
+    color:black;
+    background-color: white;
+  }
+
+  .sectionContainer{
+    border-radius: 10px;
+  }
+
+
 
 

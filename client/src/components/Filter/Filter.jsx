@@ -54,8 +54,8 @@ const Filter = () => {
         />
       </div>
       {displayDropdown.genre ? (
-        <div>
-          <div onClick={() => {
+        <div classname={style.sectionContainer} >
+          <div  classname={style.sectionOptions} onClick={() => {
             setSelectedGenre(["All"])
             handleDropdown({target: {name: "genre"}})
           }} >All</div>

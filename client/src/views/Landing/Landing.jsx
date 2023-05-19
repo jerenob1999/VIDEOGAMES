@@ -6,11 +6,12 @@ const Landing = () => {
     return (
         <div className={style.landing}>
 
-        <div className={style.buttonContainer}>
+
         <Link to="/home">
-          <h1>LETS GET STARTED</h1>
+        <button className={style.buttonContainer}>
+          <h1>WELCOME TO GAMERZONE</h1>
+        </button>
         </Link>
-        </div>
 
           <video controls={false} autoPlay loop muted playsInline>
           <source src={landingVideo} type="video/mp4" />
