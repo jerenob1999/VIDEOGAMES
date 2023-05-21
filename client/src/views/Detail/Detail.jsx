@@ -23,10 +23,10 @@ const Detail = () => {
     return (
         <div className={style.container}>
             <h1 className={style.gameTitle} >{videogameDetail.name}</h1>
-            <p>{platforms} </p> 
-            <p>{genre}</p>
-            <p>{videogameDetail.releaseDate} </p>
-            <p className={style.gameRating} >{videogameDetail.rating} </p>
+            <p>{`Sopported platforms:     ${platforms} `} </p> 
+            <p> {`Genres:   ${genre} `}</p>
+            <p>{`Release date:   ${videogameDetail.releaseDate} `} </p>
+            <p className={style.gameRating} >{`Overral score:   ${videogameDetail.rating} `} </p>
             <img className={style.gameImage} src={videogameDetail.image} alt={videogameDetail.name} />
             <p className={style.gameDescription} >{videogameDetail.description} </p>
         </div>

@@ -2,15 +2,23 @@
     display: flex;
     margin-bottom: 20px;
     position: absolute;
-    top: 60px; 
+    top: 65px; 
     left: 20px; 
     z-index: 1; 
   }
 
   .filter input {
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: rgb(77, 77, 77);
-    border: 1cm black;
+    border: 1px solid black;
+    color:white;
+    width: 175px;
+    height: 20px;
+  }
+
+  .filter input::placeholder{
+    color: rgb(161, 161, 161);
+    font-size: 15px;
   }
 
   .sectionOptions {

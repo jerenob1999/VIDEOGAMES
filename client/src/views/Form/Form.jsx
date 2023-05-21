@@ -110,7 +110,8 @@ const Form = () => {
 
     return (
         <form className={style.form} onSubmit={submitHandler}>
-            <div>
+          <h1>CREATE YOUR OWN VIDEOGAME</h1>
+            <div className={style.formContainer}>
                 <label>NAME</label>
                 <input type="text" value={form.name} onChange={changeHandler} name="name" />
                 {errors.name && <span className={style.errors} >{errors.name}</span>}

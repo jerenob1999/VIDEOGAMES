@@ -7,7 +7,7 @@ const Landing = () => {
     return (
         <div className={style.landing}>
         <TypeWritter className={style.title} text="Welcome to GameFinder"/>
-        <Link to="/home">
+        <Link className={style.link} to="/home">
           <h1>LET'S GET STARTED</h1>
         </Link>
         <Carousel autoplay={true}/>

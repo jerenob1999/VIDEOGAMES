@@ -4,8 +4,8 @@
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    max-width: 1200px;
     margin: 0 auto;
+    background-color: #222222;
 }
 
 .gameImage {
@@ -20,16 +20,25 @@
     font-weight: bold;
     text-align: center;
     margin-bottom: 1rem;
+    color:orange;
   }
 
   .gameDescription {
     font-size: 1.2rem;
     text-align: justify;
     margin-bottom: 1rem;
+    color:white;
+    font-weight: 200px;
   }
 
   .gameRating {
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 1rem;
+    display:flex;
+    text-align: left;
+  }
+
+  .container p{
+    color:white;
   }

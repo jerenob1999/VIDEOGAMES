@@ -15,24 +15,13 @@
     color: aliceblue;
   }
 
-  .landing Link{
+  .link{
     text-decoration: none;
+    overflow:hidden;
+    color: orange;
   }
 
-  .buttonContainer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    padding: 70px 140px;
-    border-radius: 16px;
-    transition-duration: 0.2s;
-    color: aliceblue;
-    margin-top: 10cm;
-  }
+
 
   .buttonContainer:hover {
     background-color: azure;
