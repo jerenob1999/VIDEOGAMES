@@ -33,7 +33,7 @@ const Filter = () => {
     if (!genres.length) {
         dispatch(getGenres())
     }
-}, [])
+}, [dispatch,genres.length])
 
   useEffect(() => {
     if (origin !== "") {
@@ -54,8 +54,8 @@ const Filter = () => {
         />
       </div>
       {displayDropdown.genre ? (
-        <div classname={style.sectionContainer} >
-          <div  classname={style.sectionOptions} onClick={() => {
+        <div className={style.sectionContainer} >
+          <div  className={style.sectionOptions} onClick={() => {
             setSelectedGenre(["All"])
             handleDropdown({target: {name: "genre"}})
           }} >All</div>

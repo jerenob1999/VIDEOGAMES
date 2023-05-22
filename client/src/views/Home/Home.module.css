@@ -19,3 +19,9 @@ background: linear-gradient(172deg, rgba(0,0,0,1) 19%, rgba(153,72,0,1) 100%, rg
   background-color: #ffffff;
   color:black
 }
+
+.home h1{
+  color: orange;
+  top: 20px;
+}
+

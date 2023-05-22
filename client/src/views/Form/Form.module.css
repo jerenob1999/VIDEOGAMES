@@ -80,8 +80,8 @@ form button {
 
   .description{
     height: 5cm;
-    vertical-align: text-top; /* Hace que el texto se alinee desde la parte superior */
-  line-height: 40px;
+    vertical-align: text-top;
+    line-height: 40px;
   }
 
  

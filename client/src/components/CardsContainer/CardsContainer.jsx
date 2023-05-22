@@ -4,7 +4,7 @@ import style from "./CardsContainer.module.css";
 import { useState } from "react";
 
 const CardContainer = () => {
-  const {videogames,source,filteredVideogames,order} = useSelector((state) => state);
+  const {videogames,source,filteredVideogames} = useSelector((state) => state);
   const [page, setPage] = useState(1);
   const gamesToShow =  source ? filteredVideogames.slice((page - 1) * 15, page * 15)
                               : videogames.slice((page - 1) * 15, page * 15)
@@ -20,6 +20,16 @@ const CardContainer = () => {
 
   return (
     <div className={style.cardContainer}>
+         <div className={style.buttonContainer}>
+        {page > 1 && (
+          <button  onClick={handlePrePage} className={style.prevButton}>
+            {"<"}
+          </button>
+        )}
+        <button className={style.nextButton} onClick={handleNextPage}>
+          {">"}
+        </button>
+      </div>
       {gamesToShow.map((game) => {
         return (
           <Card
@@ -37,11 +47,11 @@ const CardContainer = () => {
       <div className={style.buttonContainer}>
         {page > 1 && (
           <button  onClick={handlePrePage} className={style.prevButton}>
-            Previous
+            {"<"}
           </button>
         )}
         <button className={style.nextButton} onClick={handleNextPage}>
-          Next page
+         {">"}
         </button>
       </div>
     </div>

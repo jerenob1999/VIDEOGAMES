@@ -5,7 +5,7 @@ import style from "./Order.module.css"
 
 const Order = ({ resetVideogames }) => {
     const dispatch = useDispatch()
-    const [options, setOptions] = useState(["RATING UP", "RATING DOWN", "LETTER UP", "LETTER DOWN"])
+    const [options] = useState(["RATING UP", "RATING DOWN", "LETTER UP", "LETTER DOWN"])
     const [selectedOption, setSelectedOption] = useState("");
     const [displayDropdown,setDisplayDropdown] = useState(false);
 

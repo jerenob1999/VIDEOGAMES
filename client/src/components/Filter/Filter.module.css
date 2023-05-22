@@ -1,11 +1,13 @@
- .filter {
+.filter{
+  
   display: flex;
   margin-bottom: 20px;
   position: absolute;
   top: 80px; 
   left: 20px; 
   z-index: 1; 
- }
+
+}
 
   .filter input {
     border-radius: 10px;
@@ -25,13 +27,12 @@
     color: white;
     background-color: rgb(53, 53, 53);
     transition-duration: 0.2s;
-    border: 1px solid  rgb(88, 88, 88);
     border-radius: 7px;
   }
 
   .sectionOptions:hover{
     color:black;
-    background-color: white;
+    background-color: orange;
   }
 
   .sectionContainer{

@@ -1,6 +1,7 @@
 .order {
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
+    margin-left: 20px;
     position: absolute;
     z-index: 1;
    }
@@ -19,13 +20,12 @@
     color: white;
     background-color: rgb(53, 53, 53);
     transition-duration: 0.2s;
-    border: 1px solid  rgb(88, 88, 88);
-    border-radius: 7px;
+    border-radius: 3px;
   }
 
   .sectionOptions:hover{
     color:black;
-    background-color: white;
+    background-color: orange;
   }
 
   .order input::placeholder{

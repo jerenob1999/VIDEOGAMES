@@ -54,11 +54,11 @@ const rootReducer = (state = initialState, action) => {
       let videogamesBySource;
       if (state.source === "API")
         videogamesBySource = state.videogames.filter(
-          (game) => game.created == false
+          (game) => game.created === false
         );
       if (state.source === "CREATED")
         videogamesBySource = state.videogames.filter(
-          (game) => game.created == true
+          (game) => game.created === true
         );
       if (state.source === "ALL") return {...state,resetVideogames:true, source:""}
       return {
@@ -88,6 +88,7 @@ const rootReducer = (state = initialState, action) => {
         return {...state, videogames: [...state.videogames].sort((a, b) => a.name.localeCompare(b.name))};
       if (action.payload === "LETTER DOWN")
         return {...state, videogames: [...state.videogames].sort((a, b) => b.name.localeCompare(a.name))}
+        break;
 
     case SET_ORDER:
       return {

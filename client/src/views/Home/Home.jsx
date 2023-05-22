@@ -1,4 +1,3 @@
-import CardContainer from "../../components/CardsContainer/CardsContainer";
 import { useEffect, useRef,lazy,Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideogames } from "../../redux/actions";
@@ -15,7 +14,6 @@ const Home = () => {
     const {source,videogames,resetVideogames,order,searched} = useSelector(state => state)
     const dispatch = useDispatch()
     const reset = useRef(null);
-    const currentVideogames = useRef(videogames)
     
 
     useEffect(() => {
@@ -48,9 +46,12 @@ const Home = () => {
     return (
         <div className={style.home}>
             <button onClick={() => buttonHandler()}>Reset Filters</button>
+            <h1>GameFinder</h1>
+            <div className={style.filters}>
             <div className={style.filterContainer}>
             <Order resetVideogames={resetVideogames}/>
             <Filter/>
+            </div>
             <Suspense fallback={<Loading/>}>
             <LazyCardContainer />
             </Suspense>

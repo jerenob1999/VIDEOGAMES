@@ -16,7 +16,6 @@ const Detail = () => {
 
     useEffect(() => {
         dispatch(getVideogameDetail(id))
-        console.log(videogameDetail)
         return () => {
         dispatch(cleanvideogameDetail())
         }
