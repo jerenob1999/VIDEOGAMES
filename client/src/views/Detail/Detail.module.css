@@ -1,44 +1,51 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    margin: 0 auto;
-    background-color: #222222;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 2rem;
+  margin: 0 auto;
+  background-color: #222222;
+}
+
+.container-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .gameImage {
-    width: 100%;
-    max-width: 800px;
-    height: auto;
-    margin-bottom: 1rem;
-  }
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  margin-bottom: 1rem;
+}
 
-  .gameTitle {
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 1rem;
-    color:orange;
-  }
+.gameTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 1rem;
+  color: orange;
+}
 
-  .gameDescription {
-    font-size: 1.2rem;
-    text-align: justify;
-    margin-bottom: 1rem;
-    color:white;
-    font-weight: 200px;
-  }
+.gameDescription {
+  font-size: 1.2rem;
+  text-align: justify;
+  margin-bottom: 1rem;
+  font-weight: 200;
+  margin-left: 1rem; /* Añade un margen izquierdo para separar de los demás elementos */
+}
 
-  .gameRating {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    display:flex;
-    text-align: left;
-  }
+.container p {
+  color: orange;
+  text-align: left;
+}
 
-  .container p{
-    color:white;
-  }
+.container span {
+  color: white;
+  font-weight: bold;
+  justify-content: flex-start;
+  text-align: left;
+}

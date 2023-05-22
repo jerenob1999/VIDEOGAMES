@@ -6,9 +6,9 @@ const videogamesFilter = (videogames) => {
       name: videogame.name,
       description: videogame.description,
       platforms: videogame.platforms,
-      image: videogame.background_image,
+      image: videogame.background_image || videogame.image,
       rating: videogame.rating,
-      releaseDate: videogame.released,
+      releaseDate: videogame.released || videogame.releaseDate,
       created: false,
       genre: videogame.genres.map(genre => {
         return {

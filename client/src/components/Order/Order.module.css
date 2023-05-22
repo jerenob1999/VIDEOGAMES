@@ -1,0 +1,38 @@
+.order {
+    display: flex;
+    margin-bottom: 20px;
+    position: absolute;
+    z-index: 1;
+   }
+
+.order input {
+    border-radius: 10px;
+    background-color: rgb(77, 77, 77);
+    border: 1px solid black;
+    color:white;
+    width: 175px;
+    height: 20px;
+  }
+
+
+   .sectionOptions {
+    color: white;
+    background-color: rgb(53, 53, 53);
+    transition-duration: 0.2s;
+    border: 1px solid  rgb(88, 88, 88);
+    border-radius: 7px;
+  }
+
+  .sectionOptions:hover{
+    color:black;
+    background-color: white;
+  }
+
+  .order input::placeholder{
+    color: rgb(161, 161, 161);
+    font-size: 15px;
+  }
+
+  .sectionContainer{
+    border-radius: 15px;
+  }

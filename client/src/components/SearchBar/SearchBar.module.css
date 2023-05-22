@@ -1,7 +1,5 @@
 .container {
     display: flex;
-    justify-content: center;
-    align-items: center;
     border-radius: 15px;
     padding: 5px;
   }
@@ -9,4 +7,9 @@
 .container input{
   background-color: rgb(104, 104, 104);
   color: black;
+}
+
+.container input::placeholder{
+  color: rgb(161, 161, 161);
+  font-size: 15px;
 }

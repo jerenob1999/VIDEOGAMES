@@ -1,6 +1,7 @@
-import { useEffect, useState,useRef } from "react"
-import { useSelector,useDispatch} from "react-redux"
+import { useEffect, useState } from "react"
+import { useDispatch} from "react-redux"
 import { setOrder } from "../../redux/actions"
+import style from "./Order.module.css"
 
 const Order = ({ resetVideogames }) => {
     const dispatch = useDispatch()
@@ -25,6 +26,7 @@ const Order = ({ resetVideogames }) => {
 
  
 return (
+    <div className={style.order}>
   <section>
     <div onClick={handleDropdown}>
         <input
@@ -35,11 +37,11 @@ return (
         />
     </div>
     {displayDropdown ? (
-        <div>
+        <div className={style.sectionContainer}>
 
             {options.map(option => {
                 return (
-                    <div key={option} onClick={() => {
+                    <div key={option} className={style.sectionOptions} onClick={() => {
                         handleOrder(option)
                         handleDropdown()
                     }}>
@@ -50,6 +52,7 @@ return (
         </div>
     ) : null}
   </section>
+  </div>
 )
 
 

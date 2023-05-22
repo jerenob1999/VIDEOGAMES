@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { getVideogamesByName,setSearched } from "../../redux/actions"
-import { useDispatch,useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import style from "./SearchBar.module.css"
 
 

@@ -2,3 +2,20 @@
     background: rgb(0,0,0);
 background: linear-gradient(172deg, rgba(0,0,0,1) 19%, rgba(153,72,0,1) 100%, rgba(255,222,0,1) 100%, rgba(255,158,0,1) 100%)}
 
+
+.home button{
+  margin: 0 5px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #2c2c2c;
+  color: #fff;
+  border: 1px black;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.home button:hover{
+  background-color: #ffffff;
+  color:black
+}

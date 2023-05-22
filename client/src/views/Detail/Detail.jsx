@@ -8,7 +8,9 @@ const Detail = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
     const videogameDetail = useSelector(store => store.videogameDetail)
-    const platforms = Array.isArray(videogameDetail.platforms)  && videogameDetail.platforms.map(p => p.platform.name).join(", ");
+    const platforms = Array.isArray(videogameDetail.platforms) ? videogameDetail.platforms.map(p => p.platform.name).join(", ") : videogameDetail.platforms;
+
+
     const genre = videogameDetail.genre ? videogameDetail.genre.map(genre => genre.name).join(", ") : "";
 
 
@@ -23,12 +25,12 @@ const Detail = () => {
     return (
         <div className={style.container}>
             <h1 className={style.gameTitle} >{videogameDetail.name}</h1>
-            <p>{`Sopported platforms:     ${platforms} `} </p> 
-            <p> {`Genres:   ${genre} `}</p>
-            <p>{`Release date:   ${videogameDetail.releaseDate} `} </p>
-            <p className={style.gameRating} >{`Overral score:   ${videogameDetail.rating} `} </p>
+            <p><span>Supported Platforms:       </span>{platforms}</p> 
+            <p> <span>Genres:       </span>{genre}</p>
+            <p><span>Release Date:     </span>{videogameDetail.releaseDate} </p>
+            <p className={style.gameRating} ><span>Rating:       </span>{videogameDetail.rating}</p>
             <img className={style.gameImage} src={videogameDetail.image} alt={videogameDetail.name} />
-            <p className={style.gameDescription} >{videogameDetail.description} </p>
+            <p className={style.gameDescription} dangerouslySetInnerHTML={{__html:videogameDetail.description }} ></p>
         </div>
     )
 }

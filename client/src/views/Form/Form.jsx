@@ -37,7 +37,8 @@ const Form = () => {
         genres: "",
         image: "",
         releaseDate: "",
-        submit:""
+        submit:"",
+        rating:""
     })
 
     const [form, setForm] = useState({
@@ -102,8 +103,24 @@ const Form = () => {
 
           if (form.description === "") {
             updatedErrors = { ...updatedErrors, description: "description cannot be empty"}
-          } 
-      
+          }
+
+          if (form.platforms === "") {
+            updatedErrors = { ...updatedErrors, platforms: "platforms cannot be empty" };
+          }
+
+          if (form.rating === "") {
+            updatedErrors = { ...updatedErrors, rating: "rating cannot be empty" };
+          }
+
+          if (form.image === "") {
+            updatedErrors = { ...updatedErrors, image: "image cannot be empty" };
+          }
+
+          if (form.releaseDate === "") {
+            updatedErrors = { ...updatedErrors, releaseDate: "Release date cannot be empty" };
+          }
+
           return updatedErrors;
         });
       };
@@ -119,6 +136,7 @@ const Form = () => {
             <div>
                 <label>PLATFORMS </label>
                 <input type="text" value={form.platforms} onChange={changeHandler} name="platforms" />
+                {errors.platforms && <span className={style.errors} >{errors.platforms}</span>}
             </div>
             <div>
                 <label htmlFor="genres" name="genres">GENRES</label>
@@ -131,19 +149,22 @@ const Form = () => {
             </div>
             <div>
                 <label>IMAGE</label>
-                <input type="file" value={form.image} onChange={changeHandler} name="image" />
+                <input type="text" value={form.image} onChange={changeHandler} name="image" placeholder="Insert img url"/>
+                {errors.image && <span className={style.errors} >{errors.image}</span>}
             </div>
             <div>
                 <label>RELEASEDATE </label>
                 <input type="date" value={form.releaseDate} onChange={changeHandler} name="releaseDate" min="2023-01-01" max={currentDate} />
+                {errors.releaseDate && <span className={style.errors} >{errors.releaseDate}</span>}
             </div>
             <div>
                 <label>RATING </label>
                 <input type="number" min="1" max="5" step="0.1" value={form.rating} onChange={changeHandler} name="rating" />
+                {errors.rating && <span className={style.errors} >{errors.rating}</span>}
             </div>
             <div>
                 <label>DESCRIPTION </label>
-                <input type="text" value={form.description} onChange={changeHandler} name="description" />
+                <input type="text" value={form.description} className={style.description} onChange={changeHandler} name="description" />
                 {errors.description && <span className={style.errors}>{errors.description}</span>}
             </div>
             <button className={style.submitButton} type="submit" disabled={!!errors.name || !!errors.description}>SUBMIT</button>

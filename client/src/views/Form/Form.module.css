@@ -78,5 +78,11 @@ form button {
     border-radius: 4px;
   }
 
+  .description{
+    height: 5cm;
+    vertical-align: text-top; /* Hace que el texto se alinee desde la parte superior */
+  line-height: 40px;
+  }
+
  
   
