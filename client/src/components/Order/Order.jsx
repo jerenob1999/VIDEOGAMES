@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import { useDispatch} from "react-redux"
 import { setOrder } from "../../redux/actions"
 import style from "./Order.module.css"
 
-const Order = ({ resetVideogames }) => {
+const Order = () => {
     const dispatch = useDispatch()
     const [options] = useState(["RATING UP", "RATING DOWN", "LETTER UP", "LETTER DOWN"])
     const [selectedOption, setSelectedOption] = useState("");
@@ -17,12 +17,6 @@ const Order = ({ resetVideogames }) => {
         setSelectedOption(selectedOrder)
         dispatch(setOrder(selectedOrder))
     }
-
-    useEffect(() => {
-        if (resetVideogames) {
-          setSelectedOption("");
-        }
-      }, [resetVideogames]);
 
  
 return (

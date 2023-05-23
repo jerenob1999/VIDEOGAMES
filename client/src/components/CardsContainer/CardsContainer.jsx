@@ -4,10 +4,19 @@ import style from "./CardsContainer.module.css";
 import { useState } from "react";
 
 const CardContainer = () => {
-  const {videogames,source,filteredVideogames} = useSelector((state) => state);
+  const { videogames, source, filteredVideogames } = useSelector(
+    (state) => state
+  );
   const [page, setPage] = useState(1);
-  const gamesToShow =  source ? filteredVideogames.slice((page - 1) * 15, page * 15)
-                              : videogames.slice((page - 1) * 15, page * 15)
+  const gamesPerPage = 15;
+
+  const gamesToShow = source
+    ? filteredVideogames.slice((page - 1) * gamesPerPage, page * gamesPerPage)
+    : videogames.slice((page - 1) * gamesPerPage, page * gamesPerPage);
+
+  const totalPages = Math.ceil(
+    (source ? filteredVideogames.length : videogames.length) / gamesPerPage
+  );
 
   const handleNextPage = () => {
     setPage(page + 1);
@@ -17,18 +26,23 @@ const CardContainer = () => {
     setPage(page - 1);
   };
 
-
   return (
     <div className={style.cardContainer}>
-         <div className={style.buttonContainer}>
+      <div className={style.buttonContainer}>
         {page > 1 && (
-          <button  onClick={handlePrePage} className={style.prevButton}>
+          <button onClick={handlePrePage} className={style.prevButton}>
             {"<"}
           </button>
         )}
-        <button className={style.nextButton} onClick={handleNextPage}>
-          {">"}
-        </button>
+        <span className={style.pageNumber}>{page}</span>
+        <span >/</span>
+        <span className={style.totalPages}>{totalPages}</span>
+
+        {page !== totalPages && (
+          <button className={style.nextButton} onClick={handleNextPage}>
+            {">"}
+          </button>
+        )}
       </div>
       {gamesToShow.map((game) => {
         return (
@@ -46,13 +60,18 @@ const CardContainer = () => {
       })}
       <div className={style.buttonContainer}>
         {page > 1 && (
-          <button  onClick={handlePrePage} className={style.prevButton}>
+          <button onClick={handlePrePage} className={style.prevButton}>
             {"<"}
           </button>
         )}
-        <button className={style.nextButton} onClick={handleNextPage}>
-         {">"}
-        </button>
+        <span className={style.pageNumber}>{page}</span>
+        <span className={style.pageSeparator}>/</span>
+        <span className={style.totalPages}>{totalPages}</span>
+        {page !== totalPages && (
+          <button className={style.nextButton} onClick={handleNextPage}>
+            {">"}
+          </button>
+        )}
       </div>
     </div>
   );

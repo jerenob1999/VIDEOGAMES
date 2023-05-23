@@ -6,6 +6,7 @@
   padding: 2rem;
   margin: 0 auto;
   background-color: #222222;
+  border: 1px solid white;
 }
 
 .container-row {
@@ -17,7 +18,7 @@
 
 .gameImage {
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px;
   height: auto;
   margin-bottom: 1rem;
 }
@@ -48,4 +49,11 @@
   font-weight: bold;
   justify-content: flex-start;
   text-align: left;
+}
+
+
+.ratingstar {
+  color: gold; /* Cambia el color de la estrella según tus preferencias */
+  font-size: 12px; /* Ajusta el tamaño de la estrella según tus necesidades */
+  margin-right: 5px; /* Agrega un margen a la derecha para separar la estrella del rating */
 }

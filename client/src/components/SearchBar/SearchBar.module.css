@@ -2,6 +2,8 @@
     display: flex;
     border-radius: 15px;
     padding: 5px;
+    width: 20cm;
+    margin-left: 9.6cm;
   }
 
 .container input{

@@ -1,4 +1,4 @@
-.filter{
+/* .filter{
   
   display: flex;
   margin-bottom: 20px;
@@ -7,7 +7,8 @@
   left: 20px; 
   z-index: 1; 
 
-}
+} */
+
 
   .filter input {
     border-radius: 10px;

@@ -60,17 +60,22 @@ const rootReducer = (state = initialState, action) => {
         videogamesBySource = state.videogames.filter(
           (game) => game.created === true
         );
-      if (state.source === "ALL") return {...state,resetVideogames:true, source:""}
+      if (state.source === "ALL")
+        return { ...state, resetVideogames: true, source: "" };
       return {
         ...state,
         filteredVideogames: videogamesBySource,
       };
 
-      case GET_VIDEOGAMES_BY_GENRE:
-        return {
-          ...state,
-          videogames: [...state.videogames].filter(game =>  Array.isArray(game.genre) && game.genre.some(genre => action.payload.includes(genre.name)) )
-        }
+    case GET_VIDEOGAMES_BY_GENRE:
+      return {
+        ...state,
+        videogames: [...state.videogames].filter(
+          (game) =>
+            Array.isArray(game.genre) &&
+            game.genre.some((genre) => action.payload.includes(genre.name))
+        ),
+      };
 
     case SET_SOURCE:
       return {
@@ -79,46 +84,59 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case ORDER_VIDEOGAMES:
-      
       if (action.payload === "RATING UP")
-        return { ...state, videogames: [...state.videogames].sort((a, b) => a.rating - b.rating) };
+        return {
+          ...state,
+          videogames: [...state.videogames].sort((a, b) => a.rating - b.rating),
+        };
       if (action.payload === "RATING DOWN")
-        return { ...state, videogames: [...state.videogames].sort((a,b) => b.rating - a.rating)};
+        return {
+          ...state,
+          videogames: [...state.videogames].sort((a, b) => b.rating - a.rating),
+        };
       if (action.payload === "LETTER UP")
-        return {...state, videogames: [...state.videogames].sort((a, b) => a.name.localeCompare(b.name))};
+        return {
+          ...state,
+          videogames: [...state.videogames].sort((a, b) =>
+            a.name.localeCompare(b.name)
+          ),
+        };
       if (action.payload === "LETTER DOWN")
-        return {...state, videogames: [...state.videogames].sort((a, b) => b.name.localeCompare(a.name))}
-        break;
+        return {
+          ...state,
+          videogames: [...state.videogames].sort((a, b) =>
+            b.name.localeCompare(a.name)
+          ),
+        };
+      break;
 
     case SET_ORDER:
       return {
         ...state,
-        order: action.payload
-      }
-
+        order: action.payload,
+      };
 
     case RESET_FILTERS:
       return {
         ...state,
         videogames: action.payload,
-        resetVideogames:true,
-        source:"",
-        searched:"",
-      }
-    
+        filteredVideogames: [],
+        resetVideogames: true,
+        source: "",
+        searched: "",
+      };
+
     case SET_RESET_TO_FALSE:
       return {
         ...state,
-        resetVideogames:false,
-      }
+        resetVideogames: false,
+      };
 
     case SET_SEARCHED:
       return {
         ...state,
-        searched: action.payload
-      }
-       
-    
+        searched: action.payload,
+      };
     
 
     default:

@@ -6,11 +6,13 @@ import TypeWritter from "./TypeWritter"
 const Landing = () => {
     return (
         <div className={style.landing}>
-        <TypeWritter className={style.title} text="Welcome to GameFinder"/>
+        <Carousel autoplay={true}/>
+          <div className={style.textContainer}>
+        <TypeWritter className={style.title} text="Welcome to GameFinder, Your Gateway to Endless Gaming Possibilities!"/>
         <Link className={style.link} to="/home">
           <h1>LET'S GET STARTED</h1>
         </Link>
-        <Carousel autoplay={true}/>
+          </div>
         </div>
     )
 }

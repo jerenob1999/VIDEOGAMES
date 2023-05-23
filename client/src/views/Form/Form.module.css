@@ -49,12 +49,16 @@ form button {
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.3s ease;
-  margin-top: 1cm;
+  margin-top: 5px;
   }
 
   button:hover {
     background-color: #ffffff;
     color:#222222
+  }
+
+   form button:disabled{
+    color: #7c7c7c;
   }
 
   .errors {

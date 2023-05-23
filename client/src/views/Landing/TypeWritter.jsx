@@ -12,7 +12,7 @@ const TypeWriter = ({ text,className}) => {
       } else {
         clearInterval(interval);
       }
-    }, 100);
+    }, 50);
 
     return () => {
       clearInterval(interval);

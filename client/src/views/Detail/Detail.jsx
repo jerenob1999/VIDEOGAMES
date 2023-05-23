@@ -27,7 +27,7 @@ const Detail = () => {
             <p><span>Supported Platforms:       </span>{platforms}</p> 
             <p> <span>Genres:       </span>{genre}</p>
             <p><span>Release Date:     </span>{videogameDetail.releaseDate} </p>
-            <p className={style.gameRating} ><span>Rating:       </span>{videogameDetail.rating}</p>
+            <p className={style.gameRating} ><span>Rating:       </span>{videogameDetail.rating} <span class="ratingstar">&#9733;</span></p>
             <img className={style.gameImage} src={videogameDetail.image} alt={videogameDetail.name} />
             <p className={style.gameDescription} dangerouslySetInnerHTML={{__html:videogameDetail.description }} ></p>
         </div>

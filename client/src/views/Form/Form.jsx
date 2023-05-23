@@ -154,7 +154,7 @@ const Form = () => {
             </div>
             <div>
                 <label>RELEASEDATE </label>
-                <input type="date" value={form.releaseDate} onChange={changeHandler} name="releaseDate" min="2023-01-01" max={currentDate} />
+                <input type="date" value={form.releaseDate} onChange={changeHandler} name="releaseDate" min="1980-01-01" max={currentDate} />
                 {errors.releaseDate && <span className={style.errors} >{errors.releaseDate}</span>}
             </div>
             <div>
@@ -167,7 +167,7 @@ const Form = () => {
                 <input type="text" value={form.description} className={style.description} onChange={changeHandler} name="description" />
                 {errors.description && <span className={style.errors}>{errors.description}</span>}
             </div>
-            <button className={style.submitButton} type="submit" disabled={!!errors.name || !!errors.description}>SUBMIT</button>
+            <button className={style.submitButton} type="submit" disabled={!!errors.name || !!errors.description || errors.platforms || errors.rating || errors.image || errors.releaseDate}>SUBMIT</button>
             <div className={style.submit}>
             {errors.submit && <span className={style.errors}>{errors.submit}</span>}
             {form.submit && <span className={style.success}>{form.submit}</span>}
