@@ -1,4 +1,4 @@
-import { useEffect, useRef, lazy, Suspense } from "react";
+import { useEffect, useRef, lazy, Suspense,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Filter,
@@ -21,6 +21,7 @@ const Home = () => {
   );
   const dispatch = useDispatch();
   const reset = useRef(null);
+  const [defaultPage, setDefaultPage] = useState(false)
 
   useEffect(() => {
     if (!searched) dispatch(getVideogames());
@@ -40,6 +41,7 @@ const Home = () => {
   const buttonHandler = () => {
     dispatch(resetFilters(reset.current));
     dispatch(setResetFalse());
+    setDefaultPage(true)
   };
 
 
@@ -54,7 +56,7 @@ const Home = () => {
         </div>
       <button onClick={() => buttonHandler()}>Reset Filters</button>
         <Suspense fallback={<Loading/>}>
-          <LazyCardContainer />
+          <LazyCardContainer defaultPage={defaultPage} />
         </Suspense>
       </div>
     </div>

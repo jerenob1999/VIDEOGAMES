@@ -1,9 +1,9 @@
 import Card from "../Card/Card";
 import { useSelector } from "react-redux";
 import style from "./CardsContainer.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const CardContainer = () => {
+const CardContainer = (props) => {
   const { videogames, source, filteredVideogames } = useSelector(
     (state) => state
   );
@@ -17,6 +17,10 @@ const CardContainer = () => {
   const totalPages = Math.ceil(
     (source ? filteredVideogames.length : videogames.length) / gamesPerPage
   );
+
+  useEffect(() => {
+    if(props.defaultPage) setPage(1)
+  },[props])
 
   const handleNextPage = () => {
     setPage(page + 1);
