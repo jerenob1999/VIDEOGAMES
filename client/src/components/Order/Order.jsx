@@ -1,9 +1,9 @@
-import {  useState } from "react"
+import {  useState , useEffect} from "react"
 import { useDispatch} from "react-redux"
 import { setOrder } from "../../redux/actions"
 import style from "./Order.module.css"
 
-const Order = () => {
+const Order = (props) => {
     const dispatch = useDispatch()
     const [options] = useState(["RATING UP", "RATING DOWN", "LETTER UP", "LETTER DOWN"])
     const [selectedOption, setSelectedOption] = useState("");
@@ -17,6 +17,12 @@ const Order = () => {
         setSelectedOption(selectedOrder)
         dispatch(setOrder(selectedOrder))
     }
+
+    useEffect(() => {
+        if (props.defaultPage === true) {
+            setSelectedOption("")
+        }
+      }, [props]);
 
  
 return (

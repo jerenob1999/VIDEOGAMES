@@ -38,10 +38,11 @@ const Home = () => {
     if (order) dispatch(orderVideogames(order));
   }, [dispatch, source, order]);
 
-  const buttonHandler = () => {
+  const buttonHandler = async () => {
     dispatch(resetFilters(reset.current));
     dispatch(setResetFalse());
-    setDefaultPage(true)
+    await setDefaultPage(true);
+    setDefaultPage(false)
   };
 
 
@@ -50,9 +51,9 @@ const Home = () => {
     <div className={style.home}>
       <h1>GameFinder</h1>
       <div className={style.filters}>
-          <Order/>
+          <Order defaultPage={defaultPage}/>
         <div className={style.filterContainer}>
-          <Filter/>
+          <Filter defaultPage={defaultPage}/>
         </div>
       <button onClick={() => buttonHandler()}>Reset Filters</button>
         <Suspense fallback={<Loading/>}>

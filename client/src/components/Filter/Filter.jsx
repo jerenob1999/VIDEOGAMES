@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { getGenres, filterByGenre, setSource } from "../../redux/actions";
 import style from "./Filter.module.css";
 
-const Filter = () => {
+const Filter = (props) => {
   const dispatch = useDispatch();
   const [origin, setOrigin] = useState("");
   const { genres } = useSelector((state) => state);
@@ -32,6 +32,12 @@ const Filter = () => {
     }
   }, [dispatch, genres.length]);
 
+  useEffect(() => {
+    if (props.defaultPage === true) {
+      setSelectedGenre([]);
+      setOrigin("");
+    }
+  }, [props]);
 
   useEffect(() => {
     if (origin !== "") {
