@@ -5,6 +5,11 @@
     margin-top: 2cm;
   }
 
+  .cardContainer  p{
+    color:white;
+    font-weight: bold;
+  }
+
   .buttonContainer {
     bottom: 0;
     width: 100%;

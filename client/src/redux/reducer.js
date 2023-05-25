@@ -124,6 +124,7 @@ const rootReducer = (state = initialState, action) => {
         resetVideogames: true,
         source: "",
         searched: "",
+        order:""
       };
 
     case SET_RESET_TO_FALSE:

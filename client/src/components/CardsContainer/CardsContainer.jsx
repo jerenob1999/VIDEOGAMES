@@ -48,7 +48,7 @@ const CardContainer = (props) => {
           </button>
         )}
       </div>
-      {gamesToShow.map((game) => {
+      {gamesToShow.length ? gamesToShow.map((game) => {
         return (
           <Card
             id={game.id}
@@ -61,7 +61,9 @@ const CardContainer = (props) => {
             rating={game.rating}
           />
         );
-      })}
+      }) : (
+        <p>No games available</p>
+      )}
       <div className={style.buttonContainer}>
         {page > 1 && (
           <button onClick={handlePrePage} className={style.prevButton}>
