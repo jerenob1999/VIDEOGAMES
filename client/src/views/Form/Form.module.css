@@ -3,12 +3,16 @@
     margin: 0 auto;
   }
 
+
+
 body {
   background-color: #222222;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
  }
+
+
 
  .form h1 {
   color:orange;
@@ -80,8 +84,10 @@ form button {
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    margin-top: 5px;
+    margin-bottom: 10px;
   }
-
+  
   .description{
     height: 5cm;
     vertical-align: text-top;

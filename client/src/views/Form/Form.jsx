@@ -14,7 +14,6 @@ const Form = () => {
     const [regex, setRegex] = useState({
         nameRegex:/^[\w\s]{1,50}$/,
         descriptionRegex:/^[\s\S]{1,500}$/,
-
     })
     const currentDate = new Date().toISOString().split('T')[0];
     const showHandler = () => {
@@ -26,7 +25,6 @@ const Form = () => {
     useEffect(() => {
         dispatch(getGenres())
     }, [])
-
 
 
 
@@ -54,10 +52,16 @@ const Form = () => {
     
     const [options, setOptions] = useState([])
     const handleOptions = (event) => {
+      if (event.target.value === "Clean") {
+        setOptions([])
+        setForm({ ...form, genre: [] })
+      } else {
         const [id, name] = event.target.value.split(",");
-        setOptions([...options, name])
-        setForm({ ...form, genre: [...form.genre, id] })
-        console.log(options)
+        if (!form.genre.includes(id)) {
+          setOptions([...options, name])
+          setForm({ ...form, genre: [...form.genre, id] })
+        }
+      }
     }
     
     const submitHandler = (event) => {
@@ -121,6 +125,10 @@ const Form = () => {
             updatedErrors = { ...updatedErrors, releaseDate: "Release date cannot be empty" };
           }
 
+          if (!form.genre.length) {
+            updatedErrors = {...updatedErrors, genres:"genres cannot be empty"}
+          }
+
           return updatedErrors;
         });
       };
@@ -140,12 +148,14 @@ const Form = () => {
             </div>
             <div>
                 <label htmlFor="genres" name="genres">GENRES</label>
-                <select name="genres" className={style.select} id="genres" onChange={handleOptions} onClick={showHandler}>
-                    <option disabled>-- Select a genre --</option>
-                    {show && genres.map((genre) => (
+                <input value={options} name="genres" id="genres" readOnly ></input>
+                <select name="genres" className={style.select} id="genres"  multiple={true} value={form.genre} onChange={handleOptions} onClick={showHandler}>
+                  <option value="Clean">Clean</option>
+                    {genres.map((genre) => (
                         <option key={genre.id} value={`${genre.id},${genre.name}`}>{genre.name}</option>
                     ))}
                 </select>
+                {errors.genres && <span className={style.errors}>{errors.genres}</span>}
             </div>
             <div>
                 <label>IMAGE</label>
@@ -167,7 +177,7 @@ const Form = () => {
                 <input type="text" value={form.description} className={style.description} onChange={changeHandler} name="description" />
                 {errors.description && <span className={style.errors}>{errors.description}</span>}
             </div>
-            <button className={style.submitButton} type="submit" disabled={!!errors.name || !!errors.description || errors.platforms || errors.rating || errors.image || errors.releaseDate}>SUBMIT</button>
+            <button className={style.submitButton} type="submit" disabled={!!errors.name || !!errors.description || errors.platforms || errors.rating || errors.image || errors.releaseDate || errors.genres}>SUBMIT</button>
             <div className={style.submit}>
             {errors.submit && <span className={style.errors}>{errors.submit}</span>}
             {form.submit && <span className={style.success}>{form.submit}</span>}
