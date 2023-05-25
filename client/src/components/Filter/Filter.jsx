@@ -22,8 +22,10 @@ const Filter = (props) => {
   };
 
   const handleGenreSelect = (genre) => {
-    dispatch(filterByGenre(genre));
-    setSelectedGenre([...selectedGenre, genre]);
+    if (!selectedGenre.includes(genre)) {
+      dispatch(filterByGenre(genre));
+      setSelectedGenre([...selectedGenre, genre]);
+    }
   };
 
   useEffect(() => {
@@ -58,15 +60,6 @@ const Filter = (props) => {
         </div>
         {displayDropdown.genre ? (
           <div className={style.sectionContainer}>
-            <div
-              className={style.sectionOptions}
-              onClick={() => {
-                setSelectedGenre(["All"]);
-                handleDropdown({ target: { name: "genre" } });
-              }}
-            >
-              All
-            </div>
             {genres.map((genre) => {
               return (
                 <div
